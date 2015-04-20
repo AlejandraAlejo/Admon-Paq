@@ -1,7 +1,8 @@
 <?php
 class SupplierController extends BaseController {
     //Registrar nuevo proveedor
-    public function create(){
+    public function create()
+    {
         $input = Input::all();
         $supplier = new Supplier;
         $supplier -> name = $input['name'];
@@ -19,6 +20,12 @@ class SupplierController extends BaseController {
 			Session::flash('class', 'danger');
         }
         return Redirect::back();
+    }
+
+    public function showAll()
+    {
+        $suppliers = Supplier::paginate(5);
+        return View::make('/supplier/list', compact("suppliers"));
     }
 }
 ?>

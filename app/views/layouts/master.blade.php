@@ -14,7 +14,7 @@
                 para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
+                    <span class="sr-only">Menú</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

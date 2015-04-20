@@ -27,3 +27,5 @@ Route::get('/supplier/create', function()
 
 //Función para guardar proveedor en la BD
 Route::post('/supplier/create', 'SupplierController@create');
+
+Route::get('/supplier/list', 'SupplierController@showAll');
