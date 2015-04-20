@@ -10,7 +10,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 //Mostrar formulario de inicio de sesión
 Route::get('/', 'SessionsController@showLogin');
 
@@ -20,5 +19,11 @@ Route::post('mainMenu', 'SessionsController@mainMenu');
 //Cerrar sesión
 Route::get('logout', 'SessionsController@logOut');
 
+//Crear vista alta proveedores
+Route::get('/supplier/create', function()
+{
+	return View::make('/supplier/create');
+});
 
-
+//Función para guardar proveedor en la BD
+Route::post('/supplier/create', 'SupplierController@create');
