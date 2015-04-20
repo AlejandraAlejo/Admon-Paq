@@ -10,20 +10,30 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', function()
+//Mostrar formulario de inicio de sesión
+Route::get('/', 'SessionsController@showLogin');
+
+//Verificar los datos ingresados en el formulario y enviar al menu principal
+Route::post('mainMenu', 'SessionsController@mainMenu');
+
+//Cerrar sesión
+Route::get('logout', 'SessionsController@logOut');
+
+//Crear vista alta proveedores
+Route::get('/supplier/create', function()
 {
-	return View::make('hello');
-}); 
+	return View::make('/supplier/create');
+});
+
+//Función para guardar proveedor en la BD
+Route::post('/supplier/create', 'SupplierController@create');
+
+Route::get('/supplier/list', 'SupplierController@showAll'); 
 
 Route::post('/incomes/store','IncomesController@store');
 Route::post('/incomes/update/{id}','IncomesController@update');
 Route::get('/incomes/destroy/{id}','IncomesController@destroy');
 //Route::controller('incomes','IncomesController');
-
-Route::get('usuarios', function()
-{
-    return View::make('usuarios');
-});
 
 Route::get('/incomes', 'IncomesController@getIndex');
 

@@ -1,0 +1,25 @@
+.panel{
+	width: 40%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 50px;
+}
+            
+.supplier-form{
+	margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+            
+.submit-button{
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.list-buttons{
+	text-align: center;
+}
+
+.font-white{
+	
+}

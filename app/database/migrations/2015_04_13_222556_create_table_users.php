@@ -18,6 +18,7 @@ class CreateTableUsers extends Migration {
 			$tabla->string('user', 45);
 			$tabla->string('password', 200);
 			$tabla->timestamps();
+            $tabla->rememberToken();
 		});
 	}
 

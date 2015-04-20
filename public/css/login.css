@@ -1,0 +1,25 @@
+h1, h2{
+    text-align: center;
+}
+            
+.panel{
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+            
+.panel-heading{
+    font-weight: bold;
+}
+            
+.form-group{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+            
+.submit-button{
+    margin-bottom: 20px;
+    text-align: center;
+}
