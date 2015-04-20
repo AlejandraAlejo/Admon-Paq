@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+//Mostrar formulario de inicio de sesión
+Route::get('/', 'SessionsController@showLogin');
+
+//Verificar los datos ingresados en el formulario y enviar al menu principal
+Route::post('mainMenu', 'SessionsController@mainMenu');
+
+//Cerrar sesión
+Route::get('logout', 'SessionsController@logOut');
+
+
+
