@@ -18,9 +18,16 @@ Route::get('/', function()
 Route::post('/incomes/store','IncomesController@store');
 Route::post('/incomes/update/{id}','IncomesController@update');
 Route::get('/incomes/destroy/{id}','IncomesController@destroy');
-Route::controller('incomes','IncomesController');
+//Route::controller('incomes','IncomesController');
 
 Route::get('usuarios', function()
 {
     return View::make('usuarios');
+});
+
+Route::get('/incomes', 'IncomesController@getIndex');
+
+Route::get('/incomes/create', function()
+{
+    return View::make('incomes/save');
 });

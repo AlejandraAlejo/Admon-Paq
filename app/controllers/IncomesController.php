@@ -39,13 +39,10 @@ class IncomesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$income = new Income();
+		$income = new Income;
    		$income->description = Input::get('description');
    		$income->date = Input::get('date');
-   		$income->amount = Input::get(Input::get('amount'));
-   		$income->created_at = Input::get('created_at');
-   		$income->updated_at = Input::get('updated_at');
-   		$income->active = true;
+   		$income->amount = Input::get('amount');
    		//$income->save();
    		if ($income->save()) {
 			Session::flash('message','Guardado correctamente!');
@@ -54,7 +51,7 @@ class IncomesController extends \BaseController {
 			Session::flash('message','Ha ocurrido un error!');
 			Session::flash('class','danger');
 		}
-   		return Redirect::to('incomes')->with('notice', 'El ingreso ha sido creado correctamente.');
+   		return Redirect::back();
 	}
 
 

@@ -5,27 +5,32 @@
  <title> Guardar ingreso </title>
  </head>
  <body>
+ @if(Session::has('message'))
+ <div class="alert alert-{{Session::get('class')}}">
+   {{Session::get('message')}}
+ </div>
+ @endif
     <h1> Guardar ingreso </h1>
-    {{ Form::open(array('url' => 'incomes/' . $income->id)) }}
+    {{ Form::open(array('action' => 'IncomesController@store')) }}
        {{ Form::label ('description', 'Descripcion') }}
        <br />
-       {{ Form::text ('description', $income->description) }}
+       {{ Form::text ('description') }}
        <br />
        {{ Form::label ('date', 'fecha') }}
        <br />
-       {{ Form::text ('date', $income->date) }} 
+       {{ Form::text ('date') }} 
        <br /> 
        {{ Form::label ('amount', 'Cantidad') }}
        <br />
-       {{ Form::text ('amount', $income->amount) }}
+       {{ Form::text ('amount') }}
        <br />
        {{ Form::label ('created_at', 'Creado') }}
        <br />
-       {{ Form::text ('created_at', $income->created_at) }}
+       {{ Form::text ('created_at') }}
        <br />
        {{ Form::label ('updated_at', 'Modificado') }}
        <br />
-       {{ Form::text ('updated_at', $income->updated_at) }}
+       {{ Form::text ('updated_at') }}
        <br />
        {{ Form::submit('Guardar ingreso') }}
        {{ link_to('incomes', 'Cancelar') }}
