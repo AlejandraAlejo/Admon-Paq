@@ -15,3 +15,10 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/supplier/create', function()
+{
+	return View::make('/supplier/create');
+});
+
+Route::post('/supplier/create', 'SupplierController@create');
