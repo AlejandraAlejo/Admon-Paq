@@ -8,11 +8,12 @@
     </head>
     <body>
         <div class = "container">
-            <h1>Admon-Paq</h1>
-            <h2>Aplicación para registro de ingresos y egresos</h2>
+            <div class = "logo">
+                {{ HTML::image('img/LogoAdmonPaq.png') }}
+            </div>
             <div class = "panel panel-primary">
                 <div class = "panel-heading">Iniciar Sesión</div>
-                {{ Form::open(['url' => 'mainMenu']) }}
+                {{ Form::open(['url' => 'welcome']) }}
                     <div class = "form-group">
                         {{ Form::label('user', 'Usuario') }}
                         {{ Form::text('user', '', array('class' => 'form-control', 'placeholder' => 'Ingresa tu usuario')) }}

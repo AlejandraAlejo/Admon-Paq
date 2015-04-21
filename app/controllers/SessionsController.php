@@ -9,17 +9,17 @@ class SessionsController extends BaseController {
         if(Auth::check()){
             
             //Si tenemos una sesión activa mostraremos el menú principal
-            return View::make('mainMenu');
+            return View::make('welcome');
         }
         
         //Si no, mostraremos el formulario
         return View::make('sessions.login');
     }
     
-    public function mainMenu(){
+    public function welcome(){
         if (Auth::attempt(Input::only('user', 'password'))){
             //return 'Bienvenido!';
-            return View::make('mainMenu');
+            return View::make('welcome');
         }
         
         /*Enviamos mensajes de error si los datos son incorrectos

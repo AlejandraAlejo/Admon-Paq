@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">AdmonPAQ</a>
+                <a class="navbar-brand" href="/">AdmonPAQ</a>
             </div>
  
             <!-- Agrupar los enlaces de navegación, los formularios y cualquier

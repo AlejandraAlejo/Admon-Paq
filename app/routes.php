@@ -14,7 +14,7 @@
 Route::get('/', 'SessionsController@showLogin');
 
 //Verificar los datos ingresados en el formulario y enviar al menu principal
-Route::post('mainMenu', 'SessionsController@mainMenu');
+Route::post('welcome', 'SessionsController@welcome');
 
 //Cerrar sesión
 Route::get('logout', 'SessionsController@logOut');
