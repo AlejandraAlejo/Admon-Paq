@@ -28,4 +28,16 @@ Route::get('/supplier/create', function()
 //Función para guardar proveedor en la BD
 Route::post('/supplier/create', 'SupplierController@create');
 
-Route::get('/supplier/list', 'SupplierController@showAll');
+Route::get('/supplier/list', 'SupplierController@showAll'); 
+
+Route::post('/incomes/store','IncomesController@store');
+Route::post('/incomes/update/{id}','IncomesController@update');
+Route::get('/incomes/destroy/{id}','IncomesController@destroy');
+//Route::controller('incomes','IncomesController');
+
+Route::get('/incomes', 'IncomesController@getIndex');
+
+Route::get('/incomes/create', function()
+{
+    return View::make('incomes/save');
+});
