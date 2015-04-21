@@ -22,7 +22,6 @@ Proveedores
 @section('nombreColumnas')
 <th>#</th>
 <th>Nombre</th>
-<th>Ver</th>
 @stop
 
 @section('contenidoTabla')
