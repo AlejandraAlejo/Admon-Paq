@@ -1,6 +1,10 @@
 <?php
 class SupplierController extends BaseController {
-    //Registrar nuevo proveedor
+    /**
+     * Crea un nuevo proveedor
+     *
+     * @return Redirect::back()
+     */
     public function create()
     {
         $input = Input::all();
@@ -22,10 +26,47 @@ class SupplierController extends BaseController {
         return Redirect::back();
     }
 
+    /**
+     * Mustra la vista con todos los proveedores
+     *
+     * @return View
+     */
     public function showAll()
     {
         $suppliers = Supplier::paginate(5);
         return View::make('/supplier/list', compact("suppliers"));
+    }
+
+    /**
+     * Mustra una vista con los datos de un proveedor
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function view($id)
+    {
+
+    }
+
+    /**
+     * Elimina un proveedor registrado
+     *
+     * @return Response
+     */
+    public function delete()
+    {
+
+    }
+
+    /**
+     * Muestra un formulario con los datos del proveedor a editar
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function showUpdate($id)
+    {
+
     }
 }
 ?>

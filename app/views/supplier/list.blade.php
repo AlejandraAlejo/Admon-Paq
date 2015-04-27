@@ -33,7 +33,7 @@ Proveedores
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
                 <button class="btn btn-success btn-xs" data-title="View" >
-                    <span class="glyphicon glyphicon-search"></span>
+                    <span class="glyphicon glyphicon-eye-open"></span>
                 </button>
             </p>
         </td >
