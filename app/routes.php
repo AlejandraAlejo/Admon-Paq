@@ -11,13 +11,6 @@
 |
 */
 //Mostrar formulario de inicio de sesión
-/*Route::get('/', function(){
-    $user = new User;
-    $user -> user = 'admin';
-    $user -> password = Hash::make('123');
-    $user -> type = '1';
-    $user -> save();
-});*/
 Route::get('/', 'SessionsController@showLogin');
 
 
