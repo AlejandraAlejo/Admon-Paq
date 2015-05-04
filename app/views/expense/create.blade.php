@@ -14,7 +14,7 @@ Admon-Paq - Crear Egreso
 
 @section('perfil')
     <li><a href="#">Perfil</a></li>
-    <li><a href="#" class="btn btn-danger font-white">Cerrar sesión</a></li>
+    <li class = "logout"><a href="logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
 @stop
 
 @section('tituloTabla')
