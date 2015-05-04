@@ -32,9 +32,9 @@ Usuarios
         <td>{{$user->user}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <button class="btn btn-success btn-xs" data-title="View" >
+                <a href = "/user/view/{{$user->id}}"><button class="btn btn-success btn-xs" data-title="View" >
                     <span class="glyphicon glyphicon-eye-open"></span>
-                </button>
+                </button></a>
             </p>
         </td >
         <td class="list-buttons">

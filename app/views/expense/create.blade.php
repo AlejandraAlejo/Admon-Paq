@@ -2,7 +2,7 @@
 
 
 @section('titulo')
-Admon-Paq - Crear Egreso
+Admon-Paq - Egresos
 @stop
 
 @section('navegacion')

@@ -19,6 +19,11 @@ Route::post('welcome', 'SessionsController@welcome');
 
 //Cerrar sesión
 Route::get('logout', 'SessionsController@logOut');
+Route::get('/supplier/logout', 'SessionsController@logOut');
+Route::get('/user/logout', 'SessionsController@logOut');
+Route::get('/income/logout', 'SessionsController@logOut');
+Route::get('/expense/logout', 'SessionsController@logOut');
+Route::get('/user/view/logut', 'SessionsController@logout');
 
 //Crear vista alta proveedores
 Route::get('/supplier/create', function()
@@ -26,15 +31,12 @@ Route::get('/supplier/create', function()
 	return View::make('/supplier/create');
 });
 
-//Guardar proveedor en la BD
+
+//Función para guardar proveedor en la BD
 Route::post('/supplier/create', 'SupplierController@create');
 
-//Listar todos los proveedores
 Route::get('/supplier/list', 'SupplierController@showAll'); 
 
-//Editar proveedor
-Route::get('/supplier/update/{id}','SupplierController@showUpdate');
-Route::post('/supplier/update/{id}','SupplierController@update');
 
 //Funciones para los ingresos
 Route::post('/incomes/store','IncomesController@store');
@@ -61,6 +63,7 @@ Route::get('/expense/createForm', 'ExpenseController@showCreateForm');
 //Guardar los datos del egreso en BD
 Route::post('/expense/create', 'ExpenseController@create');
 
+
 //Ver lista de usuarios
 Route::get('/user/list', 'UserController@showAll');
 
@@ -69,3 +72,6 @@ Route::get('/user/createForm', 'UserController@showCreateForm');
 
 //Guardar los datos de los usuarios en BD
 Route::post('/user/create', 'UserController@create');
+
+//Mostra usuario seleccionado
+Route::get('/user/view/{id}', array('as' => 'id', 'uses' => 'UserController@view'));

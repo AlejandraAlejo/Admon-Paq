@@ -1,7 +1,7 @@
 @extends('layouts.listar')
 
 @section('titulo')
-Admon-Paq - Egresos
+Admon-Paq - Crear Egreso
 @stop
 
 @section('navegacion')
