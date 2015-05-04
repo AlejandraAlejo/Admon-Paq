@@ -11,7 +11,15 @@
 |
 */
 //Mostrar formulario de inicio de sesión
+/*Route::get('/', function(){
+    $user = new User;
+    $user -> user = 'admin';
+    $user -> password = Hash::make('123');
+    $user -> type = '1';
+    $user -> save();
+});*/
 Route::get('/', 'SessionsController@showLogin');
+
 
 //Verificar los datos ingresados en el formulario y enviar al menu principal
 Route::post('welcome', 'SessionsController@welcome');
@@ -25,13 +33,18 @@ Route::get('/supplier/create', function()
 	return View::make('/supplier/create');
 });
 
+
 //Función para guardar proveedor en la BD
 Route::post('/supplier/create', 'SupplierController@create');
 
 Route::get('/supplier/list', 'SupplierController@showAll'); 
 
+
+//Funciones para los ingresos
 Route::post('/incomes/store','IncomesController@store');
+
 Route::post('/incomes/update/{id}','IncomesController@update');
+
 Route::get('/incomes/destroy/{id}','IncomesController@destroy');
 //Route::controller('incomes','IncomesController');
 
@@ -51,3 +64,12 @@ Route::get('/expense/createForm', 'ExpenseController@showCreateForm');
 
 //Guardar los datos del egreso en BD
 Route::post('/expense/create', 'ExpenseController@create');
+
+//Ver lista de usuarios
+Route::get('/user/list', 'UserController@showAll');
+
+//Vista formulario para crear usuarios
+Route::get('/user/createForm', 'UserController@showCreateForm');
+
+//Guardar los datos de los usuarios en BD
+Route::post('/user/create', 'UserController@create');

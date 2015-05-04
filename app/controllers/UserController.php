@@ -23,11 +23,9 @@ class UserController extends \BaseController {
 		//Registra nuevo usuario
 		$input = Input::all();
         $user = new User;
-        $user -> id = $input['id'];
         $user -> user = $input['user'];
         $user -> password = $input['password'];
-        $user -> created_at = $input['created_at'];
-        $user -> updated_at = $input['updated_at'];
+        $user -> type = $input['type'];
         if($user->save())
         {
         	Session::flash('message','Usuario registrado.');
@@ -42,63 +40,58 @@ class UserController extends \BaseController {
 	}
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+	 /**
+     * Muestra la vista con todos los usuarios
+     *
+     * @return View
+     */
+    public function showAll()
+    {
+        $users = User::paginate(5);
+        return View::make('/user/list', compact("users"));
+    }
 
+    /**
+     * Muestra los datos del usuario seleccionado
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function view($id)
+    {
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    }
 
+    /**
+     * Elimina un usuario registrado
+     *
+     * @return Response
+     */
+    public function delete()
+    {
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    }
 
+    /**
+     * Muestra el formulario para editar un egreso
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function showUpdate($id)
+    {
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+    }
+    
+    /*
+    *Muestra el formulario para crear un usuario  
+    */
+    public function showCreateForm()
+    {
+        $type = UserType::lists('name', 'id');
+        return View::make('user/create')->with('type', $type);
+    }
 }
+?>
+
+
