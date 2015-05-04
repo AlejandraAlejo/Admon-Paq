@@ -62,6 +62,11 @@
     </header>
 
     <div class="container">
+        @if(Session::has('message'))
+            <div class="alert alert-{{Session::get('class')}}">
+                {{Session::get('message')}}
+            </div>
+        @endif
         <div class = "panel panel-primary">
             <div class = "panel-heading list-buttons"><h4>@yield('tituloTabla')</h4></div>
             <div class = "supplier-form">
