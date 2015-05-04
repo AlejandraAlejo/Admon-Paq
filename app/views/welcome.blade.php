@@ -10,7 +10,7 @@ Admon-Paq: Bienvenido
 @stop
 
 @section('navegacion')
-    <li><a href="#">Ingresos</a></li>
+    <li><a href="/incomes">Ingresos</a></li>
     <li><a href="/expense/list">Egresos</a></li>
     <li><a href="/supplier/list">Proveedores</a></li>
     <li><a href="#">Usuarios</a></li>
