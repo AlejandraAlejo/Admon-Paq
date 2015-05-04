@@ -30,7 +30,7 @@ Registrar Usuario
                 
     <div class = "form-group">
         {{ Form::label('password', 'Contraseña') }}
-        {{ Form::password('password', '', array('class' => 'form-control', 'placeholder' => 'Contraseña', 'required' => 'required')) }}
+        {{ Form::password('password', '', array('class' => 'form-control', 'required' => 'required')) }}
     </div>
 
     <div class = "form-group">

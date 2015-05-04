@@ -8,7 +8,7 @@ Admon-Paq - Egresos
         <li><a href="/incomes">Ingresos</a></li>
         <li class="active"><a href="/expense/list">Egresos</a></li>
         <li><a href="/supplier/list">Proveedores</a></li>
-        <li><a href="#">Usuarios</a></li>
+        <li><a href="/user/list">Usuarios</a></li>
 @stop
 
 @section('tituloTabla')
