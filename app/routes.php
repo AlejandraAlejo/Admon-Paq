@@ -41,3 +41,13 @@ Route::get('/incomes/create', function()
 {
     return View::make('incomes/save');
 });
+
+
+//Ver lista de egresos
+Route::get('/expense/list', 'ExpenseController@showAll');
+
+//Vista formulario para crear egresos
+Route::get('/expense/createForm', 'ExpenseController@showCreateForm');
+
+//Guardar los datos del egreso en BD
+Route::post('/expense/create', 'ExpenseController@create');
