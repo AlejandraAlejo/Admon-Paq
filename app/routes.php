@@ -70,7 +70,7 @@ Route::post('/expense/create', 'ExpenseController@create');
 Route::get('/user/list', 'UserController@showAll');
 
 //Vista formulario para crear usuarios
-Route::get('/user/createForm', 'UserController@showCreateForm');
+Route::get('/user/create', 'UserController@showCreateForm');
 
 //Guardar los datos de los usuarios en BD
 Route::post('/user/create', 'UserController@create');
@@ -80,3 +80,9 @@ Route::get('/user/view/{id}', array('as' => 'id', 'uses' => 'UserController@view
 
 //Elimina el usuario seleccionado
 Route::get('/user/delete/{id}', array('as' => 'id', 'uses' => 'UserController@delete'));
+
+//Muestra formulario para editar el usuario
+Route::get('/user/update/{id}','UserController@showUpdate');
+
+//Guarda el usuario editado en la BD
+Route::post('/user/update/{id}','UserController@update');

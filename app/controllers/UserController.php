@@ -69,14 +69,40 @@ class UserController extends \BaseController {
     }
 
     /**
-     * Muestra el formulario para editar un usuario
+     * Muestra un formulario con los datos del usuario a editar
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function showUpdate($id)
     {
+        $user = User::find($id);
+        $user_type = UserType::find($user->type);
+        $type = UserType::lists('name', 'id');
+        if(!$user){
+            App::abort(404);
+        }
+        return View::make('/user/update')->withUser($user)->withUserType($user_type)->withType($type);
+    }
 
+    public function update($id)
+    {
+        $user = User::find($id);
+        $user -> user = Input::get('user');
+        $user -> password = Hash::make(Input::get('password'));
+        $user -> password_decrypted = Input::get('password');
+        $user -> type = Input::get('type');
+        if($user->save())
+        {
+            Session::flash('message','Usuario actualizado.');
+            Session::flash('class', 'success');
+        }
+        else
+        {
+            Session::flash('message', 'No se pudo actualizar el usuario.');
+            Session::flash('class', 'danger');
+        }
+        return Redirect::to('/user/list');
     }
     
     /*
