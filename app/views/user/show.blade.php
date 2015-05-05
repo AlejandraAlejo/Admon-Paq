@@ -20,6 +20,7 @@ Usuario: {{$users->user}}
 <th>#</th>
 <th>Usuario</th>
 <th>Tipo de Usuario</th>
+<th>Contraseña</th>
 @stop
 
 @section('contenidoTabla')
@@ -28,6 +29,7 @@ Usuario: {{$users->user}}
         <td>{{$users->id}}</td>
         <td>{{$users->user}}</td>
         <td>{{$type->name}}</td>        
+        <td>{{$users->password_decrypted}}</td>
     </tr>
 @else
 No hay Usuarios registrados.

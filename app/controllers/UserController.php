@@ -24,7 +24,8 @@ class UserController extends \BaseController {
 		$input = Input::all();
         $user = new User;
         $user -> user = $input['user'];
-        $user -> password = $input['password'];
+        $user -> password = Hash::make($input['password']);
+        $user -> password_decrypted = $input['password'];
         $user -> type = $input['type'];
         if($user->save())
         {
