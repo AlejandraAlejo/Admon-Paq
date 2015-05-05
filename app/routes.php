@@ -30,11 +30,15 @@ Route::get('/supplier/create', function()
 });
 
 
-//Función para guardar proveedor en la BD
+//Guardar proveedor en la BD
 Route::post('/supplier/create', 'SupplierController@create');
 
+//Listar todos los proveedores
 Route::get('/supplier/list', 'SupplierController@showAll'); 
 
+//Editar proveedor
+Route::get('/supplier/update/{id}','SupplierController@showUpdate');
+Route::post('/supplier/update/{id}','SupplierController@update');
 
 //Funciones para los ingresos
 Route::post('/incomes/store','IncomesController@store');

@@ -3,17 +3,6 @@
 class UserController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -72,16 +61,15 @@ class UserController extends \BaseController {
      */
     public function delete($id)
     {
-        $user_deleted = User::find($id);
-        $user_deleted->delete();
-        $users = User::paginate(5);
+        $users = User::find($id);
+        $users->delete();
         Session::flash('message','Usuario eliminado.');
         Session::flash('class', 'danger');
-        return View::make('/user/list', compact("users"));
+        return Redirect::back();
     }
 
     /**
-     * Muestra el formulario para editar un egreso
+     * Muestra el formulario para editar un usuario
      *
      * @param  int  $id
      * @return Response
