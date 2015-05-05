@@ -3,17 +3,6 @@
 class UserController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -24,7 +13,8 @@ class UserController extends \BaseController {
 		$input = Input::all();
         $user = new User;
         $user -> user = $input['user'];
-        $user -> password = $input['password'];
+        $user -> password = Hash::make($input['password']);
+        $user -> password_decrypted = $input['password'];
         $user -> type = $input['type'];
         if($user->save())
         {
@@ -59,7 +49,9 @@ class UserController extends \BaseController {
      */
     public function view($id)
     {
-
+        $users = User::find($id);
+        $type = UserType::find($users->type);
+        return View::make('user/show')->with('users', $users)->with('type' , $type);        
     }
 
     /**
@@ -67,20 +59,50 @@ class UserController extends \BaseController {
      *
      * @return Response
      */
-    public function delete()
+    public function delete($id)
     {
-
+        $users = User::find($id);
+        $users->delete();
+        Session::flash('message','Usuario eliminado.');
+        Session::flash('class', 'danger');
+        return Redirect::back();
     }
 
     /**
-     * Muestra el formulario para editar un egreso
+     * Muestra un formulario con los datos del usuario a editar
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function showUpdate($id)
     {
+        $user = User::find($id);
+        $user_type = UserType::find($user->type);
+        $type = UserType::lists('name', 'id');
+        if(!$user){
+            App::abort(404);
+        }
+        return View::make('/user/update')->withUser($user)->withUserType($user_type)->withType($type);
+    }
 
+    public function update($id)
+    {
+        $user = User::find($id);
+        $user -> user = Input::get('user');
+        $user -> password = Hash::make(Input::get('password'));
+        $user -> password_decrypted = Input::get('password');
+        $user -> type = Input::get('type');
+        if($user->save())
+        {
+            Session::flash('message','Usuario actualizado.');
+            Session::flash('class', 'success');
+        }
+        else
+        {
+            Session::flash('message', 'No se pudo actualizar el usuario.');
+            Session::flash('class', 'danger');
+        }
+        return Redirect::to('/user/list');
     }
     
     /*

@@ -45,28 +45,55 @@ class SupplierController extends BaseController {
      */
     public function view($id)
     {
-
+        $supplier = Supplier::findOrFail($id);
+        return View::make('supplier/view')->with('supplier', $supplier);
     }
 
     /**
      * Elimina un proveedor registrado
      *
-     * @return Response
+     * @return View
      */
     public function delete()
     {
-
+        $supplier=Supplier::findorFail(Input::get('supplierid'));
+        $supplier->delete();
+        return Redirect::back();
     }
 
     /**
      * Muestra un formulario con los datos del proveedor a editar
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function showUpdate($id)
     {
+        $supplier = Supplier::findorFail($id);
+        if(!$supplier){
+            App::abort(404);
+        }
+        return View::make('/supplier/update')->withSupplier($supplier);
+    }
 
+    public function update($id)
+    {
+        $supplier = Supplier::findorFail($id);
+        $supplier -> name = Input::get('name');
+        $supplier -> address = Input::get('address');
+        $supplier -> phone = Input::get('phone');
+        $supplier -> rfc = Input::get('rfc');
+        if($supplier->save())
+        {
+            Session::flash('message','Proveedor actualizado.');
+            Session::flash('class', 'success');
+        }
+        else
+        {
+            Session::flash('message', 'No se pudo actualizar el proveedor.');
+            Session::flash('class', 'danger');
+        }
+        return Redirect::to('/supplier/list');
     }
 }
 ?>

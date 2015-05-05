@@ -22,7 +22,7 @@ Registrar Proveedor
 @stop
 
 @section('formulario')
-{{ Form::open(array('action' => 'SupplierController@create')) }}
+{{Form::model($supplier, array('files'=>true))}}
     <div class = "form-group">
         {{ Form::label('name', 'Nombre') }}
         {{ Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Nombre', 'required' => 'required')) }}

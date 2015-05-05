@@ -32,16 +32,18 @@ Proveedores
         <td>{{$supplier->name}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <button class="btn btn-success btn-xs" data-title="View" >
+                <button class="btn btn-info btn-xs" data-title="View" >
                     <span class="glyphicon glyphicon-eye-open"></span>
                 </button>
             </p>
         </td >
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Edit">
-                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </button>
+                <a href="{{url('/supplier/update/'.$supplier->id)}}">
+                    <button type="button" class="btn btn-warning btn-xs">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </a>
             </p>
         </td>
         <td class="list-buttons">
