@@ -30,8 +30,41 @@ class IncomesController extends \BaseController {
 		$income = new Income();
    		return View::make('incomes.save')->with('income', $income);
 	}
+	/**
+     * Crea un nuevo egreso
+     *
+     * @return Redirect::back()
+     */
+    public function create()
+    {
+        $input = Input::all();
+        $income = new Income;
+        $income  -> description = $input['description'];
+        $income  -> date = $input['date'];
+        $income  -> amount = $input['amount'];
 
-
+        if($income->save())
+        {
+        	Session::flash('message','Ingreso registrado.');
+			Session::flash('class', 'success');
+        }
+        else
+        {
+        	Session::flash('message', 'No se pudo guardar el Ingreso.');
+			Session::flash('class', 'danger');
+        }
+        return Redirect::back();
+    }
+	/**
+     * Muestra la vista con todos los ingresos
+     *
+     * @return View
+     */
+    public function showAll()
+    {
+        $incomes = Income::paginate(5);
+        return View::make('/incomes/list', compact("incomes"));
+    }
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -112,5 +145,14 @@ class IncomesController extends \BaseController {
    		$income->delete();
    		return Redirect::to('incomes')->with('notice', 'El ingreso ha sido eliminado correctamente.');
 	}
+
+	/*
+    *Muestra el formulario para crear un ingreso   
+    */
+    public function showCreateForm()
+    {
+        $income = new Income();
+   		return View::make('incomes.save')->with('income', $income);
+    }
 
 }

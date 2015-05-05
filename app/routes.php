@@ -47,6 +47,14 @@ Route::get('/incomes/create', function()
 {
     return View::make('incomes/save');
 });
+/*Route::post('/incomes/create', 'ExpenseController@save');*/
+//Ver lista de ingresos
+Route::get('/incomes/list', 'IncomesController@showAll');
+//Vista formulario para crear ingresos
+Route::get('/incomes/createForm', 'IncomesController@showCreateForm');
+//Guardar los datos del eingreso en BD
+Route::post('/incomes/create', 'IncomesController@create');
+
 
 
 //Ver lista de egresos

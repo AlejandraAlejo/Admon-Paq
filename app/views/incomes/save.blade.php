@@ -1,39 +1,47 @@
-<!DOCTYPE html>
-<html>
- <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title> Guardar ingreso </title>
- </head>
- <body>
- @if(Session::has('message'))
- <div class="alert alert-{{Session::get('class')}}">
-   {{Session::get('message')}}
- </div>
- @endif
-    <h1> Guardar ingreso </h1>
-    {{ Form::open(array('action' => 'IncomesController@store')) }}
-       {{ Form::label ('description', 'Descripcion') }}
-       <br />
-       {{ Form::text ('description') }}
-       <br />
-       {{ Form::label ('date', 'fecha') }}
-       <br />
-       {{ Form::text ('date') }} 
-       <br /> 
-       {{ Form::label ('amount', 'Cantidad') }}
-       <br />
-       {{ Form::text ('amount') }}
-       <br />
-       {{ Form::label ('created_at', 'Creado') }}
-       <br />
-       {{ Form::text ('created_at') }}
-       <br />
-       {{ Form::label ('updated_at', 'Modificado') }}
-       <br />
-       {{ Form::text ('updated_at') }}
-       <br />
-       {{ Form::submit('Guardar ingreso') }}
-       {{ link_to('incomes', 'Cancelar') }}
-    {{ Form::close() }}
- </body>
-</html>
+@extends('layouts/crear')
+
+
+@section('titulo')
+Admon-Paq - Crear ingreso
+@stop
+
+@section('navegacion')
+        <li class="active"><a href="/incomes">Ingresos</a></li>
+        <li><a href="/expense/list">Egresos</a></li>
+        <li><a href="/supplier/list">Proveedores</a></li>
+        <li><a href="/user/list">Usuarios</a></li>
+@stop
+
+@section('perfil')
+    <li><a href="#">Perfil</a></li>
+    <li class = "logout"><a href="logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
+@stop
+
+@section('tituloTabla')
+Registrar Ingreso
+@stop
+
+
+@section('formulario')
+{{ Form::open(array('action' => 'IncomesController@create')) }}
+    <div class = "form-group">
+        {{ Form::label('description', 'Concepto') }}
+        {{ Form::text('description', '', array('class' => 'form-control', 'placeholder' => 'Concepto', 'required' => 'required')) }}
+    </div>
+                
+    <div class = "form-group">
+        {{ Form::label('date', 'Fecha del ingreso') }}
+        {{ Form::text('date', '', array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}
+    </div>
+
+    <div class = "form-group">
+        {{ Form::label('amount', 'Cantidad') }}
+        {{ Form::text('amount', '', array('class' => 'form-control', 'placeholder' => 'Cantidad')) }}
+    </div>
+    
+    <div class = "submit-button">
+        {{ Form::submit('Guardar', array('class' => 'btn btn-primary')) }}
+        <a href="/expense/list" class="btn btn-danger">Cancelar</a>
+    </div>
+{{ Form::close() }}
+@stop
