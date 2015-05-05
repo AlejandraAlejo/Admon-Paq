@@ -32,9 +32,11 @@ Usuarios
         <td>{{$user->user}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <a href = "/user/view/{{$user->id}}"><button class="btn btn-success btn-xs" data-title="View" >
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                </button></a>
+                <a href = "/user/view/{{$user->id}}">
+                    <button class="btn btn-success btn-xs" data-title="View" >
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                </a>
             </p>
         </td >
         <td class="list-buttons">
@@ -46,9 +48,11 @@ Usuarios
         </td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Delete">
-                <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
+                <a href = "/user/delete/{{$user->id}}">
+                    <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </a>    
             </p>
         </td>
     </tr>

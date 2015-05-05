@@ -71,5 +71,8 @@ Route::get('/user/createForm', 'UserController@showCreateForm');
 //Guardar los datos de los usuarios en BD
 Route::post('/user/create', 'UserController@create');
 
-//Mostra usuario seleccionado
+//Muestra usuario seleccionado
 Route::get('/user/view/{id}', array('as' => 'id', 'uses' => 'UserController@view'));
+
+//Elimina el usuario seleccionado
+Route::get('/user/delete/{id}', array('as' => 'id', 'uses' => 'UserController@delete'));

@@ -70,9 +70,14 @@ class UserController extends \BaseController {
      *
      * @return Response
      */
-    public function delete()
+    public function delete($id)
     {
-
+        $user_deleted = User::find($id);
+        $user_deleted->delete();
+        $users = User::paginate(5);
+        Session::flash('message','Usuario eliminado.');
+        Session::flash('class', 'danger');
+        return View::make('/user/list', compact("users"));
     }
 
     /**
