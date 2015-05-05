@@ -34,3 +34,7 @@ No hay Usuarios registrados.
 @endif
 @stop
 
+@section('botonVolver')
+<a href="/user/list" class="btn btn-success">Volver a lista de Usuarios</a>
+@stop
+

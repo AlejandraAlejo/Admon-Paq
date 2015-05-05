@@ -59,7 +59,9 @@ class UserController extends \BaseController {
      */
     public function view($id)
     {
-
+        $users = User::find($id);
+        $type = UserType::find($users->type);
+        return View::make('user/show')->with('users', $users)->with('type' , $type);        
     }
 
     /**

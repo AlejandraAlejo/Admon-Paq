@@ -1,6 +1,6 @@
 <!--
     SECCIONES DE LA PLANTILLA PARA LLENAR
-        Ejemplo de como implementar esta plantilla: app/views/supplier/list.blade.php
+        Ejemplo de como implementar esta plantilla: app/views/user/show.blade.php
 
     @yield('titulo')
         Título de la´página, aparecera en la pestaña del navegador
@@ -54,7 +54,8 @@
                 <ul class="nav navbar-nav navbar-right form-group">
                     <li><a href="#">Perfil</a></li>
                     <li>&nbsp;</li>
-                    <li class = "logout"><a href="logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
+                    <!-- Esto: href="/../../../logout" es para que se pueda utilizar una sóla ruta para logout y no hacer una ruta por cada vista que tenemos abierta, este enlace haría referencia a http://localhost:8000/logout -->
+                    <li class = "logout"><a href="/../../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
                     <li>&nbsp;</li>
                 </ul>
             </div>
@@ -65,7 +66,6 @@
         <div class = "panel panel-primary">
             <div class = "panel-heading list-buttons"><h4>@yield('tituloTabla')</h4></div>
             <div class = "supplier-form">
-                @yield('botonCrear')
                 <table class="table table-hover">
                     <thead>
                         @yield('nombreColumnas')
@@ -77,6 +77,9 @@
                 </table>
             </div>
         </div>
+        <div class = "botonVolver">
+            @yield('botonVolver')
+        </div>    
     </div>
 </body>
 </html>

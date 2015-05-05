@@ -20,10 +20,8 @@ Route::post('welcome', 'SessionsController@welcome');
 //Cerrar sesión
 Route::get('logout', 'SessionsController@logOut');
 Route::get('/supplier/logout', 'SessionsController@logOut');
-Route::get('/user/logout', 'SessionsController@logOut');
 Route::get('/income/logout', 'SessionsController@logOut');
-Route::get('/expense/logout', 'SessionsController@logOut');
-Route::get('/user/view/logut', 'SessionsController@logout');
+
 
 //Crear vista alta proveedores
 Route::get('/supplier/create', function()
