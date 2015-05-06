@@ -5,7 +5,7 @@ Admon-Paq - Ingresos
 @stop
 
 @section('navegacion')
-        <li class="active"><a href="/incomes">Ingresos</a></li>
+        <li class="active"><a href="/incomes/list">Ingresos</a></li>
         <li><a href="/expense/list">Egresos</a></li>
         <li><a href="/supplier/list">Proveedores</a></li>
         <li><a href="/user/list">Usuarios</a></li>
