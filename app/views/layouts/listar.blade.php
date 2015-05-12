@@ -22,7 +22,7 @@
 <head>
     <title>@yield('titulo')</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/flatly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
 </head>
 <body>

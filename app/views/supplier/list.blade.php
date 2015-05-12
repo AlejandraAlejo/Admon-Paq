@@ -20,7 +20,6 @@ Proveedores
 @stop
 
 @section('nombreColumnas')
-<th>#</th>
 <th>Nombre</th>
 @stop
 
@@ -28,7 +27,6 @@ Proveedores
 @if (count($suppliers) > 0)
     @foreach ($suppliers as $supplier) 
     <tr>
-        <td>{{$supplier->id}}</td>
         <td>{{$supplier->name}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
