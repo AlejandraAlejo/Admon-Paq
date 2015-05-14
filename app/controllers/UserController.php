@@ -14,7 +14,7 @@ class UserController extends \BaseController {
         $user = new User;
         $user -> user = $input['user'];
         $user -> password = Hash::make($input['password']);
-        //$user -> password_decrypted = $input['password'];
+        $user -> pass_encrypt = Crypt::encrypt($input['password']);
         $user -> user_type_id = $input['type'];
         if($user->save())
         {
@@ -50,8 +50,10 @@ class UserController extends \BaseController {
     public function view($id)
     {
         $users = User::find($id);
-        $type = UserType::find($users->type);
-        return View::make('user/show')->with('users', $users)->with('type' , $type);        
+        $pass_encrypt = $users->pass_encrypt;
+        $pass_decrypt = Crypt::decrypt($pass_encrypt);
+        $user_type_id = UserType::find($users->user_type_id);
+        return View::make('user/show')->with('users', $users)->with('user_type_id' , $user_type_id)->with('pass_decrypt', $pass_decrypt);        
     }
 
     /**
@@ -77,12 +79,14 @@ class UserController extends \BaseController {
     public function showUpdate($id)
     {
         $user = User::find($id);
-        $user_type = UserType::find($user->type);
+        $user_type_id = UserType::find($user->user_type_id);
         $type = UserType::lists('name', 'id');
+        $pass_encrypt = $user->pass_encrypt;
+        $pass_decrypt = Crypt::decrypt($pass_encrypt);
         if(!$user){
             App::abort(404);
         }
-        return View::make('/user/update')->withUser($user)->withUserType($user_type)->withType($type);
+        return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
     }
 
     public function update($id)
@@ -90,8 +94,8 @@ class UserController extends \BaseController {
         $user = User::find($id);
         $user -> user = Input::get('user');
         $user -> password = Hash::make(Input::get('password'));
-        $user -> password_decrypted = Input::get('password');
-        $user -> type = Input::get('type');
+        $user -> pass_encrypt = Crypt::encrypt(Input::get('password'));
+        $user -> user_type_id = Input::get('type');
         if($user->save())
         {
             Session::flash('message','Usuario actualizado.');

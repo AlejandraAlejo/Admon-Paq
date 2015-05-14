@@ -28,8 +28,8 @@ Usuario: {{$users->user}}
     <tr>
         <td>{{$users->id}}</td>
         <td>{{$users->user}}</td>
-        <td>{{$type->name}}</td>        
-        <td>{{$users->password_decrypted}}</td>
+        <td>{{$user_type_id->name}}</td>        
+        <td>{{$pass_decrypt}}</td>
     </tr>
 @else
 No hay Usuarios registrados.

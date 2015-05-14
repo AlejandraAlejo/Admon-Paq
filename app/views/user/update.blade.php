@@ -30,7 +30,7 @@ Editar Usuario
                 
     <div class = "form-group">
         {{ Form::label('password', 'Contraseña') }}
-        {{ Form::text('password', $user->password_decrypted, array('class' => 'form-control', 'placeholder' => 'Contraseña', 'required' => 'required')) }}
+        {{ Form::text('password', $pass_decrypt, array('class' => 'form-control', 'placeholder' => 'Contraseña', 'required' => 'required')) }}
     </div>
 
     <div class = "form-group">
