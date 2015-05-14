@@ -18,7 +18,7 @@ class CreateTableExpenses extends Migration {
 			$tabla->string('description', 100);
 			$tabla->date('date');
 			$tabla->float('amount');
-			$tabla->integer('supplier_id');
+			$tabla->integer('supplier_id')->unsigned();
 			$tabla->timestamps();
 		});
 	}

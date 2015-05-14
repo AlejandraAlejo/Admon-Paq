@@ -14,8 +14,8 @@ class UserController extends \BaseController {
         $user = new User;
         $user -> user = $input['user'];
         $user -> password = Hash::make($input['password']);
-        $user -> password_decrypted = $input['password'];
-        $user -> type = $input['type'];
+        //$user -> password_decrypted = $input['password'];
+        $user -> user_type_id = $input['type'];
         if($user->save())
         {
         	Session::flash('message','Usuario registrado.');
