@@ -117,6 +117,39 @@ class UserController extends \BaseController {
         $type = UserType::lists('name', 'id');
         return View::make('user/create')->with('type', $type);
     }
+    
+       /*
+    *Funcionalidad buscar
+    */
+    public function search()
+    {
+        $input = Input::get('searchbox');
+        $searchTerms = explode(' ', $input);
+        //$query = DB::table('users');
+        $users = DB::table('users')->select('id','user');
+        $incomes = DB::table('incomes')->select('id','description');
+        $expenses = DB::table('expenses')->select('id','description');
+        $suppliers = DB::table('suppliers')->select('id','name');
+            
+
+        foreach($searchTerms as $term)
+        {
+            //$query->where('user', 'LIKE', '%'. $term .'%');
+            $users->where('user', 'LIKE', '%'. $term .'%');
+            $incomes->where('description', 'LIKE', '%'. $term .'%');
+            $expenses->where('description', 'LIKE', '%'. $term .'%');
+            $suppliers->where('name', 'LIKE', '%'. $term .'%');
+        }
+        
+        //$results = $query->get();
+        //$results = $query->paginate(10);
+        $user_results = $users->get();
+        $incomes_results = $incomes->get();
+        $expenses_results = $expenses->get();
+        $suppliers_results = $suppliers->get();
+        return View::make('/user/search')->withUserResults($user_results)->withIncomesResults($incomes_results)->withExpensesResults($expenses_results)->withSuppliersResults($suppliers_results);
+        //return View::make('user/search', compact("results"));
+    }
 }
 ?>
 

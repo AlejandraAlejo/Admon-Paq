@@ -44,12 +44,12 @@
                     @yield('navegacion')
                 </ul>
 
-                <form class="navbar-form navbar-left" role="search">
+                {{ Form::open(array('action' => 'UserController@search', 'role' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET')) }}
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar">
+                        {{ Form::text('searchbox', '', array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
                     </div>
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </form>
+                {{ Form::close() }}
  
                 <ul class="nav navbar-nav navbar-right form-group">
                     <li><a href="#">Perfil</a></li>

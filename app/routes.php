@@ -94,3 +94,6 @@ Route::get('/user/update/{id}','UserController@showUpdate');
 
 //Guarda el usuario editado en la BD
 Route::post('/user/update/{id}','UserController@update');
+
+/*BUSCADOR*/
+Route::get('/search', array('as' => 'search', 'uses' => 'UserController@search'));

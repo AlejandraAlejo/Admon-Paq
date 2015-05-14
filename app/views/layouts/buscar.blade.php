@@ -44,12 +44,6 @@
                     @yield('navegacion')
                 </ul>
 
-                <!--<form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar">
-                    </div>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </form>-->
                 {{ Form::open(array('action' => 'UserController@search', 'role' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET')) }}
                     <div class="form-group">
                         {{ Form::text('searchbox', '', array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
@@ -82,10 +76,7 @@
                     <thead>
                         @yield('nombreColumnas')
                         <th>Ver</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
                     </thead>
-
                     <tbody>
                         @yield('contenidoTabla')
                     </tbody>
