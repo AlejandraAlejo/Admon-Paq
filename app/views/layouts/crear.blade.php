@@ -54,7 +54,7 @@
                     <div class="form-group">
                         {{ Form::text('searchbox', '', array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
                     </div>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" class="btn btn-default" onClick="alerta()"><span class="glyphicon glyphicon-search"></span></button>
                 {{ Form::close() }}
  
                 <ul class="nav navbar-nav navbar-right">
@@ -67,6 +67,7 @@
     <div class="container">
         @if(Session::has('message'))
             <div class="alert alert-{{Session::get('class')}}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{Session::get('message')}}
             </div>
         @endif
@@ -77,5 +78,6 @@
             </div>
         </div>
     </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>

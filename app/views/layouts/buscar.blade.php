@@ -65,6 +65,7 @@
     <div class="container">
         @if(Session::has('message'))
             <div class="alert alert-{{Session::get('class')}}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{Session::get('message')}}
             </div>
         @endif
@@ -85,5 +86,6 @@
             </div>
         </div>
     </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>
