@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddForeignKeys' => $baseDir . '/app/database/migrations/2015_05_13_191808_add_foreign_keys.php',
     'AlterTableUsers' => $baseDir . '/app/database/migrations/2015_05_13_191225_alter_table_users.php',
+    'AlterTableUsers3time' => $baseDir . '/app/database/migrations/2015_05_21_045328_alter_table_users_3time.php',
+    'AlterTableUsersAgain' => $baseDir . '/app/database/migrations/2015_05_14_051040_alter_table_users_again.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
     'Boris\\CLIOptionsHandler' => $vendorDir . '/d11wtq/boris/lib/Boris/CLIOptionsHandler.php',
