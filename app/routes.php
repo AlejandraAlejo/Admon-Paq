@@ -40,6 +40,8 @@ Route::get('/supplier/list', 'SupplierController@showAll');
 Route::get('/supplier/update/{id}','SupplierController@showUpdate');
 Route::post('/supplier/update/{id}','SupplierController@update');
 
+Route::get('/supplier/view/{id}','SupplierController@view');
+
 //Funciones para los ingresos
 Route::post('/incomes/store','IncomesController@store');
 

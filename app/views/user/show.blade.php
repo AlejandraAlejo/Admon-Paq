@@ -15,25 +15,8 @@ Admon-Paq - Usuario {{$users->id}}
 Usuario: {{$users->user}}
 @stop
 
-
-@section('nombreColumnas')
-<th>#</th>
-<th>Usuario</th>
-<th>Tipo de Usuario</th>
-<th>Contraseña</th>
-@stop
-
-@section('contenidoTabla')
-@if (count($users) > 0)
-    <tr>
-        <td>{{$users->id}}</td>
-        <td>{{$users->user}}</td>
-        <td>{{$user_type_id->name}}</td>        
-        <td>{{$pass_decrypt}}</td>
-    </tr>
-@else
-No hay Usuarios registrados.
-@endif
+@section('info')
+Password: {{$pass_decrypt}}
 @stop
 
 @section('botonVolver')

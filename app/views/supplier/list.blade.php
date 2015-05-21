@@ -30,9 +30,11 @@ Proveedores
         <td>{{$supplier->name}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <button class="btn btn-info btn-xs" data-title="View" >
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                </button>
+                <a href="{{url('/supplier/view/'.$supplier->id)}}">
+                    <button class="btn btn-info btn-xs" data-title="View" >
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                </a>
             </p>
         </td >
         <td class="list-buttons">

@@ -66,15 +66,9 @@
         <div class = "panel panel-primary">
             <div class = "panel-heading list-buttons"><h4>@yield('tituloTabla')</h4></div>
             <div class = "supplier-form">
-                <table class="table table-hover">
-                    <thead>
-                        @yield('nombreColumnas')
-                    </thead>
-
-                    <tbody>
-                        @yield('contenidoTabla')
-                    </tbody>
-                </table>
+                <address>
+                    @yield('info')
+                </address>
             </div>
         </div>
         <div class = "botonVolver">
