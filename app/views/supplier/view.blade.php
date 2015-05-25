@@ -23,5 +23,9 @@ Proveedor: {{$supplier->name}}
 @stop
 
 @section('botonVolver')
-<a href="/supplier/list" class="btn btn-success">Volver</a>
+<a href="/supplier/list" class="btn btn-default">Volver</a>
+@stop
+
+@section('botonEditar')
+<a href="/supplier/edit/id" class="btn btn-warning">Editar</a>
 @stop

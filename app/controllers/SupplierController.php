@@ -54,9 +54,9 @@ class SupplierController extends BaseController {
      *
      * @return View
      */
-    public function delete()
+    public function delete($id)
     {
-        $supplier=Supplier::findorFail(Input::get('supplierid'));
+        $supplier=Supplier::findorFail($id);
         $supplier->delete();
         return Redirect::back();
     }

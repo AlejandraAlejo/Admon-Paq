@@ -29,9 +29,11 @@ Route::get('/supplier/create', function()
 	return View::make('/supplier/create');
 });
 
-
 //Guardar proveedor en la BD
 Route::post('/supplier/create', 'SupplierController@create');
+
+//Eliminar proveedor
+Route::get('/supplier/delete/{id}', 'SupplierController@delete');
 
 //Listar todos los proveedores
 Route::get('/supplier/list', 'SupplierController@showAll'); 
@@ -40,6 +42,7 @@ Route::get('/supplier/list', 'SupplierController@showAll');
 Route::get('/supplier/update/{id}','SupplierController@showUpdate');
 Route::post('/supplier/update/{id}','SupplierController@update');
 
+//Ver proveedor
 Route::get('/supplier/view/{id}','SupplierController@view');
 
 //Funciones para los ingresos
