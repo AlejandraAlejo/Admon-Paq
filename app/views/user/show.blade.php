@@ -17,6 +17,8 @@ Usuario: {{$users->user}}
 
 @section('info')
 Password: {{$pass_decrypt}}
+<br />
+Tipo de Usuario: {{$user_type_id->name}}
 @stop
 
 @section('botonVolver')
