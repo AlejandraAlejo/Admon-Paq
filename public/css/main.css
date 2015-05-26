@@ -39,3 +39,11 @@
     margin-right: auto;
     width: 185px;
 }
+
+th{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
