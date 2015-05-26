@@ -23,6 +23,7 @@
     <title>@yield('titulo')</title>
     <meta charset="UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/flatly/bootstrap.min.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
 </head>
 <body>
