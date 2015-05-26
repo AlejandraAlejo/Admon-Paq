@@ -16,7 +16,6 @@ Búsqueda
 @stop
 
 @section('botonCrear')
-<a href="/user/create" class="btn btn-success">Crear</a>
 @stop
 
 @section('nombreColumnas')
