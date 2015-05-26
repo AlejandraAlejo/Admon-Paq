@@ -20,7 +20,6 @@ Usuarios
 @stop
 
 @section('nombreColumnas')
-<th>#</th>
 <th>Usuario</th>
 @stop
 
@@ -28,7 +27,6 @@ Usuarios
 @if (count($users) > 0)
     @foreach ($users as $user) 
     <tr>
-        <td>{{$user->id}}</td>
         <td>{{$user->user}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
