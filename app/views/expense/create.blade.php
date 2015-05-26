@@ -13,7 +13,7 @@ Admon-Paq - Egresos
 @stop
 
 @section('perfil')
-    <li><a href="#">Perfil</a></li>
+    <li><a href="/user/profile">Perfil</a></li>
     <li class = "logout"><a href="/../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
 @stop
 

@@ -150,6 +150,20 @@ class UserController extends \BaseController {
         return View::make('/user/search')->withUserResults($user_results)->withIncomesResults($incomes_results)->withExpensesResults($expenses_results)->withSuppliersResults($suppliers_results);
         //return View::make('user/search', compact("results"));
     }
+    
+    public function viewProfile()
+    {
+        if(Auth::check()){
+            $id = Auth::user()->id;
+            $currentUser = User::find($id);
+            $pass_encrypt = $currentUser->pass_encrypt;
+            $pass_decrypt = Crypt::decrypt($pass_encrypt);
+            $user_type_id = UserType::find($currentUser->user_type_id);
+            //Si tenemos una sesión activa mostraremos el menú principal
+            return View::make('user/profile')->with('currentUser', $currentUser)->with('user_type_id' , $user_type_id)->with('pass_decrypt', $pass_decrypt);        
+        }
+    }
+        
 }
 ?>
 

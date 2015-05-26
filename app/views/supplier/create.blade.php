@@ -13,8 +13,8 @@ Admon-Paq - Crear Proveedor
 @stop
 
 @section('perfil')
-    <li><a href="#">Perfil</a></li>
-    <li><a href="#" class="btn btn-danger font-white">Cerrar sesión</a></li>
+    <li><a href="/user/profile">Perfil</a></li>
+    <li><a href="/../../logout" class="btn btn-danger font-white">Cerrar sesión</a></li>
 @stop
 
 @section('tituloTabla')

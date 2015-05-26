@@ -1,6 +1,6 @@
 <!--
     SECCIONES DE LA PLANTILLA PARA LLENAR
-        Ejemplo de como implementar esta plantilla: app/views/supplier/list.blade.php
+        Ejemplo de como implementar esta plantilla: app/views/user/show.blade.php
 
     @yield('titulo')
         Título de la´página, aparecera en la pestaña del navegador
@@ -44,24 +44,18 @@
                     @yield('navegacion')
                 </ul>
 
-                <!--<form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar">
-                    </div>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </form>-->
                 {{ Form::open(array('action' => 'UserController@search', 'role' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET')) }}
                     <div class="form-group">
                         {{ Form::text('searchbox', '', array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
                     </div>
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                 {{ Form::close() }}
-                
  
                 <ul class="nav navbar-nav navbar-right form-group">
-                    <li><a href="/user/profile">Perfil</a></li>
+                    <li class="active"><a href="/user/profile">Perfil</a></li>
                     <li>&nbsp;</li>
-                    <li class = "logout"><a href="/../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
+                    <!-- Esto: href="/../../../logout" es para que se pueda utilizar una sóla ruta para logout y no hacer una ruta por cada vista que tenemos abierta, este enlace haría referencia a http://localhost:8000/logout -->
+                    <li class = "logout"><a href="/../../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
                     <li>&nbsp;</li>
                 </ul>
             </div>
@@ -69,31 +63,17 @@
     </header>
 
     <div class="container">
-        @if(Session::has('message'))
-            <div class="alert alert-{{Session::get('class')}}">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{Session::get('message')}}
-            </div>
-        @endif
         <div class = "panel panel-primary">
             <div class = "panel-heading list-buttons"><h4>@yield('tituloTabla')</h4></div>
             <div class = "supplier-form">
-                @yield('botonCrear')
-                <table class="table table-hover">
-                    <thead>
-                        @yield('nombreColumnas')
-                        <th>Ver</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </thead>
-
-                    <tbody>
-                        @yield('contenidoTabla')
-                    </tbody>
-                </table>
-                @yield('paginacion')
+                <address>
+                    @yield('info')
+                </address>
             </div>
         </div>
+        <div class = "botonVolver">
+            @yield('botonVolver')
+        </div>    
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>

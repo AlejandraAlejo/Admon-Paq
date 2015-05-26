@@ -102,3 +102,7 @@ Route::post('/user/update/{id}','UserController@update');
 
 /*BUSCADOR*/
 Route::get('/search', array('as' => 'search', 'uses' => 'UserController@search'));
+
+/*PERFIL*/
+Route::get('/user/profile', 'UserController@viewProfile');
+

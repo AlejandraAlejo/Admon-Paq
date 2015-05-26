@@ -53,7 +53,7 @@
                 
  
                 <ul class="nav navbar-nav navbar-right form-group">
-                    <li><a href="#">Perfil</a></li>
+                    <li><a href="/user/profile">Perfil</a></li>
                     <li>&nbsp;</li>
                     <li class = "logout"><a href="/../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
                     <li>&nbsp;</li>
