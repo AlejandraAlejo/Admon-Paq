@@ -136,7 +136,7 @@ class UserController extends \BaseController {
         return View::make('user/create')->with('type', $type);
     }
     
-       /*
+    /*
     *Funcionalidad buscar
     */
     public function search()
@@ -159,16 +159,16 @@ class UserController extends \BaseController {
             $suppliers->where('name', 'LIKE', '%'. $term .'%');
         }
         
-        //$results = $query->get();
-        //$results = $query->paginate(10);
         $user_results = $users->get();
         $incomes_results = $incomes->get();
         $expenses_results = $expenses->get();
         $suppliers_results = $suppliers->get();
         return View::make('/user/search')->withUserResults($user_results)->withIncomesResults($incomes_results)->withExpensesResults($expenses_results)->withSuppliersResults($suppliers_results);
-        //return View::make('user/search', compact("results"));
     }
     
+    /*
+    *Muestra el perfil del usuario actual  
+    */
     public function viewProfile()
     {
         if(Auth::check()){
@@ -181,7 +181,21 @@ class UserController extends \BaseController {
             return View::make('user/profile')->with('currentUser', $currentUser)->with('user_type_id' , $user_type_id)->with('pass_decrypt', $pass_decrypt);        
         }
     }
-        
+    
+    /*
+    *Muestra el nombre del usuario actual 
+    */
+    
+    public function viewUserName()
+    {
+        if(Auth::check()){
+            $id = Auth::user()->id;
+            $currentUser = User::find($id);
+            $userName = $currentUser->user;
+            //Regresa el nombre de usuario
+            return $userName;
+        }
+    }
 }
 ?>
 
