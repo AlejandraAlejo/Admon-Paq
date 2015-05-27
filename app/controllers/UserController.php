@@ -37,8 +37,17 @@ class UserController extends \BaseController {
      */
     public function showAll()
     {
-        $users = User::paginate(5);
-        return View::make('/user/list', compact("users"));
+        $id = Auth::user()->id;
+        $currentUser = User::find($id);
+        $user_type = $currentUser->user_type_id;
+        if($user_type == '1'){
+            $users = User::paginate(5);
+            return View::make('/user/list', compact("users"));
+        }
+        else{
+            $users = User::paginate(5);
+            return View::make('/user/listForSecretary', compact("users"));
+        }
     }
 
     /**
@@ -86,7 +95,16 @@ class UserController extends \BaseController {
         if(!$user){
             App::abort(404);
         }
-        return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+        
+        $id = Auth::user()->id;
+        $currentUser = User::find($id);
+        $user_type = $currentUser->user_type_id;
+        if($user_type == '1'){
+            return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+        }
+        else{
+            return View::make('/user/updateForSecretary')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+        }
     }
 
     public function update($id)
