@@ -45,7 +45,7 @@ class UserController extends \BaseController {
             return View::make('/user/list', compact("users"));
         }
         else{
-            $users = User::paginate(5);
+            $users = User::where('user_type_id', '2')->paginate(5);
             return View::make('/user/listForSecretary', compact("users"));
         }
     }
@@ -143,7 +143,6 @@ class UserController extends \BaseController {
     {
         $input = Input::get('searchbox');
         $searchTerms = explode(' ', $input);
-        //$query = DB::table('users');
         $users = DB::table('users')->select('id','user');
         $incomes = DB::table('incomes')->select('id','description');
         $expenses = DB::table('expenses')->select('id','description');
@@ -152,7 +151,6 @@ class UserController extends \BaseController {
 
         foreach($searchTerms as $term)
         {
-            //$query->where('user', 'LIKE', '%'. $term .'%');
             $users->where('user', 'LIKE', '%'. $term .'%');
             $incomes->where('description', 'LIKE', '%'. $term .'%');
             $expenses->where('description', 'LIKE', '%'. $term .'%');
