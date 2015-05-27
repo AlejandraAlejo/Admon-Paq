@@ -22,8 +22,8 @@ class SessionsController extends BaseController {
             return View::make('welcome');
         }
         
-        /*Enviamos mensajes de error si los datos son incorrectos
-        return Redirect::back()->with('error_messsage', 'Invalid data')->withInput();*/
+        //Enviamos mensajes de error si los datos son incorrectos
+        return Redirect::back();
     }
     
     public function logOut(){
@@ -31,7 +31,7 @@ class SessionsController extends BaseController {
         Auth::logout();
         
         //Volvemos al formulario de inicio
-        return View::make('sessions.login')->with('error_message', 'Logged out correctly');
+        return Redirect::to('/');
     }
 
 }
