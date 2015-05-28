@@ -20,7 +20,6 @@ Egresos
 @stop
 
 @section('nombreColumnas')
-<th>#</th>
 <th>Concepto</th>
 @stop
 
@@ -28,7 +27,6 @@ Egresos
 @if (count($expenses) > 0)
     @foreach ($expenses as $expense) 
     <tr>
-        <td>{{$expense->id}}</td>
         <td>{{$expense->description}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
@@ -41,9 +39,11 @@ Egresos
         </td >
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Edit">
-                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </button>
+                <a href="/expense/update/{{$expense->id}}">
+                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </a>
             </p>
         </td>
         <td class="list-buttons">
