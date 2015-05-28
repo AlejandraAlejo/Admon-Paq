@@ -48,9 +48,11 @@ Egresos
         </td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Delete">
-                <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
+                <a href = "/expense/delete/{{$expense->id}}">
+                    <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </a>    
             </p>
         </td>
     </tr>

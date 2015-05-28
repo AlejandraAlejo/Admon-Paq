@@ -87,6 +87,10 @@ Route::get('/expense/update/{id}','ExpenseController@showUpdate');
 //Guarda el egreso editado en la BD
 Route::post('/expense/update/{id}','ExpenseController@update');
 
+//Elimina el egreso seleccionado
+Route::get('/expense/delete/{id}', array('as' => 'id', 'uses' => 'ExpenseController@delete'));
+
+
 
 //Ver lista de usuarios
 Route::get('/user/list', 'UserController@showAll');
