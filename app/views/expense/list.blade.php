@@ -31,7 +31,7 @@ Egresos
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
                 <a href = "/expense/view/{{$expense->id}}">
-                    <button class="btn btn-success btn-xs" data-title="View" >
+                    <button class="btn btn-info btn-xs" data-title="View" >
                         <span class="glyphicon glyphicon-eye-open"></span>
                     </button>
                 </a>    
@@ -40,7 +40,7 @@ Egresos
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Edit">
                 <a href="/expense/update/{{$expense->id}}">
-                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
+                    <button class="btn btn-warning btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                 </a>
