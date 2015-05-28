@@ -29,7 +29,7 @@ Registrar Egreso
     </div>
                 
     <div class = "form-group">
-        {{ Form::label('date', 'Fecha del Egreso') }}
+        {{ Form::label('date', 'Fecha del Egreso (Año-Mes-Día)') }}
         {{ Form::text('date', '', array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}
     </div>
 

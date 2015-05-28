@@ -29,8 +29,8 @@ Editar Usuario
     </div>
                 
     <div class = "form-group">
-        {{ Form::label('date', 'Fecha') }}
-        {{ Form::text('date', date("d-m-Y",strtotime($date)), array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}        
+        {{ Form::label('date', 'Fecha del Egreso (Año-Mes-Día)') }}
+        {{ Form::text('date', $date, array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}        
     </div>
 
     <div class = "form-group">
