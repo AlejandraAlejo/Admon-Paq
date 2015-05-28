@@ -49,7 +49,6 @@ class ExpenseController extends BaseController {
         $description = $expenses->description;
         $date = $expenses->date;
         $amount = $expenses->amount;
-        $supplier_id = Supplier::find($expenses->supplier_id);
         return View::make('expense/show')->with('expenses', $expenses)->with('description' , $description)->with('date', $date)->with('amount', $amount)->with('supplier_id', $supplier_id);  
     }
 
@@ -71,7 +70,38 @@ class ExpenseController extends BaseController {
      */
     public function showUpdate($id)
     {
-
+        $expense = Expense::find($id);
+        $description = $expense->description;
+        $date = $expense->date;
+        $amount = $expense->amount;
+        $supplier_selected_id = Supplier::find($expense->supplier_id);
+        $supplier_name = Supplier::lists('name', 'id');
+        if(!$expense){
+            App::abort(404);
+        }
+        return View::make('/expense/update')->withExpense($expense)->withDescription($description)->withDate($date)->withAmount($amount)->withSupplierName($supplier_name);
+        
+        
+    }
+    
+     public function update($id)
+    {
+        $expense = Expense::find($id);
+        $expense -> description = Input::get('description');
+        $expense -> date = Input::get('date');
+        $expense -> amount = Input::get('amount');
+        $expense -> supplier_id = Input::get('supplier_name');
+        if($expense->save())
+        {
+            Session::flash('message','Egreso actualizado.');
+            Session::flash('class', 'success');
+        }
+        else
+        {
+            Session::flash('message', 'No se pudo actualizar el egreso.');
+            Session::flash('class', 'danger');
+        }
+        return Redirect::to('/expense/list');
     }
     
     /*
