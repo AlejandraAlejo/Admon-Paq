@@ -49,6 +49,7 @@ class ExpenseController extends BaseController {
         $description = $expenses->description;
         $date = $expenses->date;
         $amount = $expenses->amount;
+        $supplier_id = Supplier::find($expenses->supplier_id);
         return View::make('expense/show')->with('expenses', $expenses)->with('description' , $description)->with('date', $date)->with('amount', $amount)->with('supplier_id', $supplier_id);  
     }
 
@@ -57,8 +58,13 @@ class ExpenseController extends BaseController {
      *
      * @return Response
      */
-    public function delete()
+    public function delete($id)
     {
+        $expenses = Expense::find($id);
+        $expenses->delete();
+        Session::flash('message','Egreso eliminado.');
+        Session::flash('class', 'danger');
+        return Redirect::back();
 
     }
 
@@ -74,7 +80,6 @@ class ExpenseController extends BaseController {
         $description = $expense->description;
         $date = $expense->date;
         $amount = $expense->amount;
-        $supplier_selected_id = Supplier::find($expense->supplier_id);
         $supplier_name = Supplier::lists('name', 'id');
         if(!$expense){
             App::abort(404);
