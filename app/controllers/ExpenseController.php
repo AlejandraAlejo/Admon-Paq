@@ -45,7 +45,12 @@ class ExpenseController extends BaseController {
      */
     public function view($id)
     {
-
+        $expenses = Expense::find($id);
+        $description = $expenses->description;
+        $date = $expenses->date;
+        $amount = $expenses->amount;
+        $supplier_id = Supplier::find($expenses->supplier_id);
+        return View::make('expense/show')->with('expenses', $expenses)->with('description' , $description)->with('date', $date)->with('amount', $amount)->with('supplier_id', $supplier_id);  
     }
 
     /**

@@ -78,6 +78,9 @@ Route::get('/expense/createForm', 'ExpenseController@showCreateForm');
 //Guardar los datos del egreso en BD
 Route::post('/expense/create', 'ExpenseController@create');
 
+//Muestra el egreso seleccionado
+Route::get('/expense/view/{id}', array('as' => 'id', 'uses' => 'ExpenseController@view'));
+
 
 //Ver lista de usuarios
 Route::get('/user/list', 'UserController@showAll');

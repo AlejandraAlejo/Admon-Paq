@@ -32,9 +32,11 @@ Egresos
         <td>{{$expense->description}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <button class="btn btn-success btn-xs" data-title="View" >
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                </button>
+                <a href = "/expense/view/{{$expense->id}}">
+                    <button class="btn btn-success btn-xs" data-title="View" >
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                </a>    
             </p>
         </td >
         <td class="list-buttons">
