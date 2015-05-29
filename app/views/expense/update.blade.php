@@ -18,7 +18,7 @@ Admon-Paq - Editar Egreso
 @stop
 
 @section('tituloTabla')
-Editar Usuario
+Editar Egreso
 @stop
 
 @section('formulario')
