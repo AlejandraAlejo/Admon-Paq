@@ -2,7 +2,7 @@
 
 
 @section('titulo')
-Admon-Paq - Crear ingreso
+Admon-Paq - Crear Ingreso
 @stop
 
 @section('navegacion')
@@ -14,16 +14,15 @@ Admon-Paq - Crear ingreso
 
 @section('perfil')
     <li><a href="/user/profile">Perfil</a></li>
-    <li class = "logout"><a href="logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
+    <li><a href="/../../logout" class="btn btn-danger font-white">Cerrar sesión</a></li>
 @stop
 
 @section('tituloTabla')
 Registrar Ingreso
 @stop
 
-
 @section('formulario')
-{{ Form::open(array('action' => 'IncomesController@create')) }}
+{{Form::model($incomes, array('files'=>true))}}
     <div class = "form-group">
         {{ Form::label('description', 'Concepto') }}
         {{ Form::text('description', Input::old('description'),array('class' => 'form-control', 'placeholder' => 'Concepto')) }}
@@ -43,7 +42,7 @@ Registrar Ingreso
     </div>
     
     <div class = "submit-button">
-        {{ Form::submit('Guardar', array('class' => 'btn btn-primary')) }}
+        {{ Form::submit('Guardar', array('class' => 'btn btn-success')) }}
         <a href="/incomes/list" class="btn btn-danger">Cancelar</a>
     </div>
 {{ Form::close() }}

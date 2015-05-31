@@ -48,7 +48,11 @@ Route::get('/supplier/view/{id}','SupplierController@view');
 //Funciones para los ingresos
 Route::post('/incomes/store','IncomesController@store');
 
+//Editar ingreso
+Route::get('/incomes/update/{id}','IncomesController@showUpdate');
 Route::post('/incomes/update/{id}','IncomesController@update');
+//Ver ingreso
+Route::get('/incomes/view/{id}','IncomesController@view');
 
 Route::get('/incomes/destroy/{id}','IncomesController@destroy');
 //Route::controller('incomes','IncomesController');
@@ -64,7 +68,7 @@ Route::get('/incomes/create', function()
 Route::get('/incomes/list', 'IncomesController@showAll');
 //Vista formulario para crear ingresos
 Route::get('/incomes/createForm', 'IncomesController@showCreateForm');
-//Guardar los datos del eingreso en BD
+//Guardar los datos del ingreso en BD
 Route::post('/incomes/create', 'IncomesController@create');
 
 

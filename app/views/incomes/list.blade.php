@@ -21,7 +21,7 @@ Ingresos
 @stop
 
 @section('nombreColumnas')
-<th>#</th>
+
 <th>Concepto</th>
 @stop
 
@@ -29,27 +29,32 @@ Ingresos
 @if (count($incomes) > 0)
     @foreach ($incomes as $income) 
     <tr>
-        <td>{{$income->id}}</td>
         <td>{{$income->description}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <button class="btn btn-success btn-xs" data-title="View" >
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                </button>
+                <a href="{{url('/incomes/view/'.$income->id)}}">
+                    <button class="btn btn-info btn-xs" data-title="View" >
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                </a>
             </p>
         </td >
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Edit">
-                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </button>
+                <a href="{{url('/incomes/update/'.$income->id)}}">
+                    <button type="button" class="btn btn-warning btn-xs">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </a>
             </p>
         </td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Delete">
-                <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
+                <a href="{{url('/incomes/delete/'.$income->id)}}">
+                    <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </a>
             </p>
         </td>
     </tr>

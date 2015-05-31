@@ -1,5 +1,4 @@
 <?php
-
 class IncomesController extends \BaseController {
 
 	/**
@@ -35,7 +34,7 @@ class IncomesController extends \BaseController {
      *
      * @return Redirect::back()
      */
-    public function create()
+    /*public function create()
     {
         $input = Input::all();
         $income = new Income;
@@ -45,7 +44,7 @@ class IncomesController extends \BaseController {
 
         if($income->save())
         {
-        	Session::flash('message','Ingreso registrado.');
+        	Session::flash('message','Ingreso registradoooo.');
 			Session::flash('class', 'success');
         }
         else
@@ -54,6 +53,51 @@ class IncomesController extends \BaseController {
 			Session::flash('class', 'danger');
         }
         return Redirect::back();
+    }*/
+    /**
+    *NEWWWWWWWWWWWWWW
+    */
+    public function create()
+    {
+        $input = Input::all();
+        $rules = array(
+            'description' => 'required|min:4|max:40',
+            'date'  => 'required',
+            'amount' => 'required|numeric'
+        );
+        $messages = array
+            (
+                'description.required' => 'El campo es requerido',
+                'description.min' => 'Mínimo 4 caracteres',
+                'description.max' => 'Maximo 40 caracteres',
+                'date.required' => 'El campo es requerido',
+                'amount.required' => 'El campo es requerido',
+                'amount.numeric' => 'Inserte solo números'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
+        {
+            $income = new Income;
+            $income  -> description = $input['description'];
+            $income  -> date = $input['date'];
+            $income  -> amount = $input['amount'];
+
+            if($income->save())
+            {
+                Session::flash('message','Ingreso registradoooo.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo guardar el Ingreso.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::back();
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
     }
 	/**
      * Muestra la vista con todos los ingresos
@@ -122,16 +166,61 @@ class IncomesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$income = Income::find($id);
-   		$income->description = Input::get('description');
-   		$income->date = Input::get('date');
-   		$income->amount = Input::get(Input::get('amount'));
-   		$income->created_at = Input::get('created_at');
-   		$income->updated_at = Input::get('updated_at');
-   		$income->save();
-   		return Redirect::to('incomes')->with('notice', 'El ingreso ha sido modificado correctamente.');
-	
+		$input = Input::all();
+        $rules = array(
+            'description' => 'required|min:4|max:40',
+            'date'  => 'required',
+            'amount' => 'required|numeric'
+        );
+        $messages = array
+            (
+                'description.required' => 'El campo es requerido',
+                'description.min' => 'Mínimo 4 caracteres',
+                'description.max' => 'Maximo 40 caracteres',
+                'date.required' => 'El campo es requerido',
+                'amount.required' => 'El campo es requerido',
+                'amount.numeric' => 'Inserte solo números'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
+        {
+            //Segun la accion
+            $income = Income::findorFail($id);
+            $income -> description = Input::get('description');
+            $income -> date = Input::get('date');
+            $income -> amount = Input::get(Input::get('amount'));
+            if($income->save())
+            {
+                Session::flash('message','Ingreso actualizado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo actualizar el ingreso.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::to('/incomes/list');
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
 	}
+
+    /**
+     * Muestra un formulario con los datos del proveedor a editar
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function showUpdate($id)
+    {
+        $income = Income::findorFail($id);
+        if(!$income){
+            App::abort(404);
+        }
+        return View::make('/incomes/update')->withIncome($income);
+    }
 
 	/**
 	 * Remove the specified resource from storage.
@@ -155,4 +244,15 @@ class IncomesController extends \BaseController {
    		return View::make('incomes.save')->with('income', $income);
     }
 
+    /**
+     * Mustra una vista con los datos de un ingreso
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function view($id)
+    {
+        $income = Income::findOrFail($id);
+        return View::make('incomes/view')->with('income', $income);
+    }
 }
