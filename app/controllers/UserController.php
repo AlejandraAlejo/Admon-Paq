@@ -37,8 +37,17 @@ class UserController extends \BaseController {
      */
     public function showAll()
     {
-        $users = User::paginate(5);
-        return View::make('/user/list', compact("users"));
+        $id = Auth::user()->id;
+        $currentUser = User::find($id);
+        $user_type = $currentUser->user_type_id;
+        if($user_type == '1'){
+            $users = User::paginate(5);
+            return View::make('/user/list', compact("users"));
+        }
+        else{
+            $users = User::where('user_type_id', '2')->paginate(5);
+            return View::make('/user/listForSecretary', compact("users"));
+        }
     }
 
     /**
@@ -86,7 +95,16 @@ class UserController extends \BaseController {
         if(!$user){
             App::abort(404);
         }
-        return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+        
+        $id = Auth::user()->id;
+        $currentUser = User::find($id);
+        $user_type = $currentUser->user_type_id;
+        if($user_type == '1'){
+            return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+        }
+        else{
+            return View::make('/user/updateForSecretary')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+        }
     }
 
     public function update($id)
@@ -118,14 +136,13 @@ class UserController extends \BaseController {
         return View::make('user/create')->with('type', $type);
     }
     
-       /*
+    /*
     *Funcionalidad buscar
     */
     public function search()
     {
         $input = Input::get('searchbox');
         $searchTerms = explode(' ', $input);
-        //$query = DB::table('users');
         $users = DB::table('users')->select('id','user');
         $incomes = DB::table('incomes')->select('id','description');
         $expenses = DB::table('expenses')->select('id','description');
@@ -134,23 +151,22 @@ class UserController extends \BaseController {
 
         foreach($searchTerms as $term)
         {
-            //$query->where('user', 'LIKE', '%'. $term .'%');
             $users->where('user', 'LIKE', '%'. $term .'%');
             $incomes->where('description', 'LIKE', '%'. $term .'%');
             $expenses->where('description', 'LIKE', '%'. $term .'%');
             $suppliers->where('name', 'LIKE', '%'. $term .'%');
         }
         
-        //$results = $query->get();
-        //$results = $query->paginate(10);
         $user_results = $users->get();
         $incomes_results = $incomes->get();
         $expenses_results = $expenses->get();
         $suppliers_results = $suppliers->get();
         return View::make('/user/search')->withUserResults($user_results)->withIncomesResults($incomes_results)->withExpensesResults($expenses_results)->withSuppliersResults($suppliers_results);
-        //return View::make('user/search', compact("results"));
     }
     
+    /*
+    *Muestra el perfil del usuario actual  
+    */
     public function viewProfile()
     {
         if(Auth::check()){
@@ -163,7 +179,21 @@ class UserController extends \BaseController {
             return View::make('user/profile')->with('currentUser', $currentUser)->with('user_type_id' , $user_type_id)->with('pass_decrypt', $pass_decrypt);        
         }
     }
-        
+    
+    /*
+    *Muestra el nombre del usuario actual 
+    */
+    
+    public function viewUserName()
+    {
+        if(Auth::check()){
+            $id = Auth::user()->id;
+            $currentUser = User::find($id);
+            $userName = $currentUser->user;
+            //Regresa el nombre de usuario
+            return $userName;
+        }
+    }
 }
 ?>
 

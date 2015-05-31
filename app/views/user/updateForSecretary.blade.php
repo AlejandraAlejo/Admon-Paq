@@ -13,7 +13,7 @@ Admon-Paq - Editar Usuario
 @stop
 
 @section('perfil')
-    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
+    <li><a href="#">Perfil</a></li>
     <li class="logout"><a href="/../../logout" class="btn btn-danger font-white">Cerrar sesión</a></li>
 @stop
 
@@ -35,7 +35,7 @@ Editar Usuario
 
     <div class = "form-group">
         {{ Form::label('type', 'Tipo de usuario') }}
-        {{ Form::select('type', $type, Input::old('type'), array('class' => 'form-control')) }}
+        {{ Form::select('type', $type, Input::old('type'), array('class' => 'form-control', 'disabled' => 'disabled')) }}
     </div>
 
     

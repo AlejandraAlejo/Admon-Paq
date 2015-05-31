@@ -53,7 +53,7 @@
                 {{ Form::close() }}
  
                 <ul class="nav navbar-nav navbar-right form-group">
-                    <li><a href="/user/profile">Perfil</a></li>
+                   <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
                     <li>&nbsp;</li>
                     <!-- Esto: href="/../../../logout" es para que se pueda utilizar una sóla ruta para logout y no hacer una ruta por cada vista que tenemos abierta, este enlace haría referencia a http://localhost:8000/logout -->
                     <li class = "logout"><a href="/../../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>

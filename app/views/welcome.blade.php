@@ -10,14 +10,14 @@ Admon-Paq: Bienvenido
 @stop
 
 @section('navegacion')
-    <li><a href="/incomes">Ingresos</a></li>
+    <li><a href="/incomes/list">Ingresos</a></li>
     <li><a href="/expense/list">Egresos</a></li>
     <li><a href="/supplier/list">Proveedores</a></li>
     <li><a href="/user/list">Usuarios</a></li>
 @stop
 
 @section('perfil')
-    <li><a href="/user/profile">Perfil</a></li>
+    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
     <li><a href="logout" class="btn btn-danger">Cerrar sesión</a></li>
 @stop
 

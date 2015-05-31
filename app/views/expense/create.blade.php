@@ -13,7 +13,7 @@ Admon-Paq - Egresos
 @stop
 
 @section('perfil')
-    <li><a href="/user/profile">Perfil</a></li>
+    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
     <li class = "logout"><a href="/../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
 @stop
 
@@ -29,7 +29,7 @@ Registrar Egreso
     </div>
                 
     <div class = "form-group">
-        {{ Form::label('date', 'Fecha del Egreso') }}
+        {{ Form::label('date', 'Fecha del Egreso (Año-Mes-Día)') }}
         {{ Form::text('date', '', array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}
     </div>
 

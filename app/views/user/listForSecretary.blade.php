@@ -1,67 +1,65 @@
 @extends('layouts.listar')
 
 @section('titulo')
-Admon-Paq - Crear Egreso
+Admon-Paq - Usuarios
 @stop
 
 @section('navegacion')
         <li><a href="/incomes/list">Ingresos</a></li>
-        <li class="active"><a href="/expense/list">Egresos</a></li>
+        <li><a href="/expense/list">Egresos</a></li>
         <li><a href="/supplier/list">Proveedores</a></li>
-        <li><a href="/user/list">Usuarios</a></li>
+        <li class="active"><a href="/user/list">Usuarios</a></li>
 @stop
 
 @section('tituloTabla')
-Egresos
+Usuarios
 @stop
 
 @section('botonCrear')
-<a href="/expense/createForm" class="btn btn-success">Crear</a>
+<a href="/user/create" class="btn btn-success">Crear</a>
 @stop
 
 @section('nombreColumnas')
-<th>Concepto</th>
+<th>Usuario</th>
 @stop
 
 @section('contenidoTabla')
-@if (count($expenses) > 0)
-    @foreach ($expenses as $expense) 
+@if (count($users) > 0)
+    @foreach ($users as $user) 
     <tr>
-        <td>{{$expense->description}}</td>
+        <td>{{$user->user}}</td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="View">
-                <a href = "/expense/view/{{$expense->id}}">
+                <a href = "/user/view/{{$user->id}}">
                     <button class="btn btn-info btn-xs" data-title="View" >
                         <span class="glyphicon glyphicon-eye-open"></span>
                     </button>
-                </a>    
+                </a>
             </p>
         </td >
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Edit">
-                <a href="/expense/update/{{$expense->id}}">
-                    <button class="btn btn-warning btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_package" >
+                <a href="/user/update/{{$user->id}}">
+                    <button type="button" class="btn btn-warning btn-xs">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                 </a>
             </p>
         </td>
         <td class="list-buttons">
-            <p data-placement="top" data-toggle="tooltip" title="Delete">
-                <a href = "/expense/delete/{{$expense->id}}">
-                    <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
+            <p data-placement="top" data-toggle="tooltip" title="No estas autorizado">
+                <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' disabled = "disabled">
                         <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </a>    
+                </button>
             </p>
-        </td>
+        </td>        
     </tr>
     @endforeach
 @else
-No hay Egresos registrados.
+No hay Usuarios registrados.
 @endif
 @stop
 
 @section('paginacion')
-{{$expenses->links()}}
+{{$users->links()}}
 @stop
