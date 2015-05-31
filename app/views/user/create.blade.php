@@ -35,7 +35,7 @@ Registrar Usuario
 
     <div class = "form-group">
         {{ Form::label('type', 'Tipo de usuario') }}
-        {{ Form::select('type', $type, array('class' => 'form-control')) }}   
+        {{ Form::select('type', $type, '', array('class' => 'form-control')) }}   
     </div>
     
     <div class = "submit-button">
