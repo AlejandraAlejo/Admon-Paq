@@ -19,10 +19,14 @@ class SessionsController extends BaseController {
     public function welcome(){
         if (Auth::attempt(Input::only('user', 'password'))){
             //return 'Bienvenido!';
+            Session::flash('message', '¡Bienvenido!');
+            Session::flash('class', 'info');
             return View::make('welcome');
         }
         
         //Enviamos mensajes de error si los datos son incorrectos
+        Session::flash('message', 'Usuario y/o Contraseña incorrectos.');
+        Session::flash('class', 'danger');
         return Redirect::back();
     }
     

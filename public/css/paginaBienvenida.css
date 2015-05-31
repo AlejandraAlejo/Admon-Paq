@@ -15,3 +15,8 @@ img{
     height: auto;
     width: 35%;
 }
+
+.alert-info{
+    font-size: 25pt;
+    text-align: center;
+}

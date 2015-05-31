@@ -73,10 +73,29 @@ class UserController extends \BaseController {
     public function delete($id)
     {
         $users = User::find($id);
-        $users->delete();
-        Session::flash('message','Usuario eliminado.');
-        Session::flash('class', 'danger');
-        return Redirect::back();
+        $currentUserId = Auth::user()->id;
+          
+        //si eliminamos el usuario con el que iniciamos sesión...
+        if($users->id == $currentUserId)
+        {
+            
+            //Cerramos sesión
+            //Auth::logout();
+            //eliminamos usuario
+            $users->delete();
+            Session::flash('message','Usuario eliminado.');
+            Session::flash('class', 'danger');
+        
+            //Volvemos al formulario de inicio
+            return Redirect::to('/');
+            
+        }
+        else{
+            $users->delete(); 
+            Session::flash('message','Usuario eliminado.');
+            Session::flash('class', 'danger');
+            return Redirect::back();
+        }
     }
 
     /**
@@ -89,7 +108,10 @@ class UserController extends \BaseController {
     {
         $user = User::find($id);
         $user_type_id = UserType::find($user->user_type_id);
-        $type = UserType::lists('name', 'id');
+        //$user_type_name = $user_type_id->name;
+        $user_administrator = UserType::find('1');
+        $user_secretary = UserType::find('2');
+        //$type = UserType::lists('name', 'id');
         $pass_encrypt = $user->pass_encrypt;
         $pass_decrypt = Crypt::decrypt($pass_encrypt);
         if(!$user){
@@ -99,11 +121,47 @@ class UserController extends \BaseController {
         $id = Auth::user()->id;
         $currentUser = User::find($id);
         $user_type = $currentUser->user_type_id;
+        //Si el usuario actual es administrador
         if($user_type == '1'){
-            return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+            //si el usuario es de tipo Secretario, aparecerá Secretario en la lista de tipo de usuario por defecto
+            if($user_type_id->id == $user_secretary->id){
+                $user_no_selected_name = $user_administrator->name;
+                $user_no_selected_id = $user_administrator->id;
+                $user_selected_name = $user_secretary->name;
+                $user_selected_id = $user_secretary->id;
+                return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withUserNoSelectedName($user_no_selected_name)->withUserNoSelectedId($user_no_selected_id)->withUserSelectedName($user_selected_name)->withUserSelectedId($user_selected_id)->withPassDecrypt($pass_decrypt);
+            }
+            else{
+                //si el usuario es de tipo Secretario, aparecerá Secretario en la lista de tipo de usuario por defecto
+                if($user_type_id->id == $user_administrator->id){
+                    $user_no_selected_name = $user_secretary->name;
+                    $user_no_selected_id = $user_secretary->id;
+                    $user_selected_name = $user_administrator->name;
+                    $user_selected_id = $user_administrator->id;
+                    return View::make('/user/update')->withUser($user)->withUserTypeId($user_type_id)->withUserNoSelectedName($user_no_selected_name)->withUserNoSelectedId($user_no_selected_id)->withUserSelectedName($user_selected_name)->withUserSelectedId($user_selected_id)->withPassDecrypt($pass_decrypt);
+                }            
+            }
         }
+        //Si el usuario actual No es administrador
         else{
-            return View::make('/user/updateForSecretary')->withUser($user)->withUserTypeId($user_type_id)->withType($type)->withPassDecrypt($pass_decrypt);
+             //si el usuario es de tipo Secretario, aparecerá Secretario en la lista de tipo de usuario por defecto
+            if($user_type_id->id == $user_secretary->id){
+                $user_no_selected_name = $user_administrator->name;
+                $user_no_selected_id = $user_administrator->id;
+                $user_selected_name = $user_secretary->name;
+                $user_selected_id = $user_secretary->id;
+                return View::make('/user/updateForSecretary')->withUser($user)->withUserTypeId($user_type_id)->withUserNoSelectedName($user_no_selected_name)->withUserNoSelectedId($user_no_selected_id)->withUserSelectedName($user_selected_name)->withUserSelectedId($user_selected_id)->withPassDecrypt($pass_decrypt);
+            }
+            else{
+                //si el usuario es de tipo Secretario, aparecerá Secretario en la lista de tipo de usuario por defecto
+                if($user_type_id->id == $user_administrator->id){
+                    $user_no_selected_name = $user_secretary->name;
+                    $user_no_selected_id = $user_secretary->id;
+                    $user_selected_name = $user_administrator->name;
+                    $user_selected_id = $user_administrator->id;
+                    return View::make('/user/updateForSecretary')->withUser($user)->withUserTypeId($user_type_id)->withUserNoSelectedName($user_no_selected_name)->withUserNoSelectedId($user_no_selected_id)->withUserSelectedName($user_selected_name)->withUserSelectedId($user_selected_id)->withPassDecrypt($pass_decrypt);
+                }            
+            }
         }
     }
 

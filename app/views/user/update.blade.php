@@ -35,7 +35,7 @@ Editar Usuario
 
     <div class = "form-group">
         {{ Form::label('type', 'Tipo de usuario') }}
-        {{ Form::select('type', $type, Input::old('type'), array('class' => 'form-control')) }}
+        {{ Form::select('type', [$user_no_selected_id => $user_no_selected_name, $user_selected_id => $user_selected_name] , [$user_selected_name =>$user_selected_id], array('class' => 'form-control')) }}
     </div>
 
     
