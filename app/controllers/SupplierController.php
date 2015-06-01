@@ -39,6 +39,7 @@ class SupplierController extends BaseController {
         }
         else
         {
+            Input::flash();
             return Redirect::back()->withErrors($validator);
         }
     }
@@ -136,6 +137,7 @@ class SupplierController extends BaseController {
         }
         else
         {
+            Input::flash();
             return Redirect::back()->withErrors($validator);
         }
     }
