@@ -20,26 +20,25 @@ Registrar Egreso
 {{ Form::open(array('action' => 'ExpenseController@create')) }}
     <div class = "form-group">
         {{ Form::label('description', 'Concepto') }}
-        {{ Form::text('description', Input::old('description'), array('class' => 'form-control', 'placeholder' => 'Concepto')) }}
-        <div class="bg-danger">{{$errors->first('description')}}</div>
+        {{ Form::text('description', Input::old('description'), array('class' => 'form-control', 'placeholder' => 'Concepto', 'required' => 'required')) }}
+        {{ $errors->first('description', '<span class="label label-danger">:message</span>') }}
     </div>
                 
     <div class = "form-group">
         {{ Form::label('date', 'Fecha del Egreso (Año-Mes-Día)') }}
-        {{ Form::text('date', Input::old('date'), array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha')) }}
-        <div class="bg-danger">{{$errors->first('date')}}</div>
+        {{ Form::text('date', Input::old('date'), array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}
+        {{ $errors->first('date', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('amount', 'Cantidad') }}
-        {{ Form::text('amount', Input::old('amount'), array('class' => 'form-control', 'placeholder' => 'Cantidad')) }}
-        <div class="bg-danger">{{$errors->first('amount')}}</div>
+        {{ Form::text('amount', Input::old('amount'), array('class' => 'form-control', 'placeholder' => 'Cantidad', 'required' => 'required')) }}
+        {{ $errors->first('amount', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('supplier_id', 'Proveedor') }}
         {{ Form::select('supplier_id', $supplier_id, '',array('class' => 'form-control')) }}   
-        <div class="bg-danger">{{$errors->first('supplier_id')}}</div>
     </div>
     
     <div class = "submit-button">

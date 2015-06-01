@@ -20,20 +20,20 @@ Editar Usuario
 {{Form::model($user, array('files'=>true))}}
     <div class = "form-group">
         {{ Form::label('user', 'Nombre de usuario') }}
-        {{ Form::text('user', Input::old('user'), array('class' => 'form-control', 'readonly' => 'readonly')) }}
-        <div class="bg-danger">{{$errors->first('user')}}</div>
+        {{ Form::text('user', Input::old('user'), array('class' => 'form-control', 'readonly' => 'readonly', 'required' => 'required')) }}
+        {{ $errors->first('user', '<span class="label label-danger">:message</span>') }}
     </div>
                 
     <div class = "form-group">
         {{ Form::label('password', 'Contraseña') }}
-        {{ Form::text('password', $pass_decrypt, array('class' => 'form-control', 'placeholder' => 'Contraseña')) }}
-        <div class="bg-danger">{{$errors->first('password')}}</div>
+        {{ Form::text('password', $pass_decrypt, array('class' => 'form-control', 'placeholder' => 'Contraseña', 'required' => 'required')) }}
+        {{ $errors->first('password', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('type', 'Tipo de usuario') }}
         {{ Form::select('type', [$user_no_selected_id => $user_no_selected_name, $user_selected_id => $user_selected_name] , [$user_selected_name => $user_selected_id], array('class' => 'form-control')) }}
-        <div class="bg-danger">{{$errors->first('type')}}</div>
+        
     </div>
 
     

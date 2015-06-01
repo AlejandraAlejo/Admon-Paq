@@ -20,20 +20,20 @@ Registrar Usuario
 {{ Form::open(array('action' => 'UserController@create')) }}
     <div class = "form-group">
         {{ Form::label('user', 'Nombre de usuario') }}
-        {{ Form::text('user', Input::old('user'), array('class' => 'form-control', 'placeholder' => 'Nombre de usuario')) }}
-        <div class="bg-danger">{{$errors->first('user')}}</div>
+        {{ Form::text('user', Input::old('user'), array('class' => 'form-control', 'placeholder' => 'Nombre de usuario', 'required' => 'required')) }}
+        {{ $errors->first('user', '<span class="label label-danger">:message</span>') }}
     </div>
                 
     <div class = "form-group">
         {{ Form::label('password', 'Contraseña') }}
-        {{ Form::password('password', array('class' => 'form-control')) }}
-        <div class="bg-danger">{{$errors->first('password')}}</div>
+        {{ Form::password('password', array('class' => 'form-control', 'required' => 'required')) }}
+        {{ $errors->first('password', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('type', 'Tipo de usuario') }}
         {{ Form::select('type', $type, '', array('class' => 'form-control')) }}   
-        <div class="bg-danger">{{$errors->first('type')}}</div>
+        
     </div>
     
     <div class = "submit-button">
