@@ -18,9 +18,6 @@ class SessionsController extends BaseController {
     
     public function welcome(){
         if (Auth::attempt(Input::only('user', 'password'))){
-            //return 'Bienvenido!';
-            Session::flash('message', '¡Bienvenido!');
-            Session::flash('class', 'info');
             return View::make('welcome');
         }
         
