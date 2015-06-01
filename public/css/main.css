@@ -55,3 +55,7 @@ td{
 .profile-options .btn{
     margin-left: 20px;
 }
+
+.label-danger{
+    font-size: 13px;
+}

@@ -21,19 +21,19 @@ Registrar Ingreso
     <div class = "form-group">
         {{ Form::label('description', 'Concepto') }}
         {{ Form::text('description', $income->description,array('class' => 'form-control', 'placeholder' => 'Concepto')) }}
-        <div class="bg-danger">{{$errors->first('description')}}</div>
+        {{ $errors->first('description', '<span class="label label-danger">:message</span>') }}
     </div>
                 
     <div class = "form-group">
         {{ Form::label('date', 'Fecha del Ingreso (Año-Mes-Día)') }}
         {{ Form::text('date', $income->date, array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha')) }}
-        <div class="bg-danger">{{$errors->first('date')}}</div>
+        {{ $errors->first('date', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('amount', 'Cantidad') }}
         {{ Form::text('amount', $income->amount, array('class' => 'form-control', 'placeholder' => 'Cantidad')) }}
-        <div class="bg-danger">{{$errors->first('amount')}}</div>
+        {{ $errors->first('amount', '<span class="label label-danger">:message</span>') }}
     </div>
     
     <div class = "submit-button">
