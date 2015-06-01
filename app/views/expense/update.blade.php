@@ -40,7 +40,7 @@ Editar Egreso
 
     <div class = "form-group">
         {{ Form::label('supplier_name', 'Proveedor') }}
-        {{ Form::select('supplier_name', $supplier_name, Input::old('supplier_name'), array('class' => 'form-control')) }}
+        {{ Form::select('supplier_name', $supplier_name, [$supplier_selected_name => $supplier_selected_id], array('class' => 'form-control')) }}
     </div>
 
     

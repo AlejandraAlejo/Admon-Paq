@@ -40,7 +40,7 @@ Registrar Egreso
 
     <div class = "form-group">
         {{ Form::label('supplier_id', 'Proveedor') }}
-        {{ Form::select('supplier_id', $supplier_id, array('class' => 'form-control')) }}   
+        {{ Form::select('supplier_id', $supplier_id, '',array('class' => 'form-control')) }}   
     </div>
     
     <div class = "submit-button">
