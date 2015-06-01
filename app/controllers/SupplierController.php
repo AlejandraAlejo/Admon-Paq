@@ -9,20 +9,15 @@ class SupplierController extends BaseController {
     {
         $input = Input::all();
         $rules = array(
-            'name' => 'required',
-            'address'  => 'required',
-            'phone' => 'required|numeric',
-            'rfc' => 'required'
+            'phone' => 'numeric',
+            'rfc' => 'alpha_num'
         );
-        $messages = array
-            (
-                'name.required' => 'El campo es requerido',
-                'address.required' => 'El campo es requerido',
-                'phone.required' => 'El campo es requerido',
-                'phone.numeric' => 'Inserte solo números',
-                'rfc.required' => 'El campo es requerido'
-            );
-        $validator = Validator::make($input, $rules,$messages);
+        $messages = array(
+            'phone.numeric' => 'El campo Telefono debe ser un número.',
+            'rfc.alpha_num' => 'El campo RFC sólo puede contener letras y números.'
+        );
+
+        $validator = Validator::make($input, $rules, $messages);
         if($validator->passes())
         {
             $supplier = new Supplier;
@@ -44,7 +39,7 @@ class SupplierController extends BaseController {
         }
         else
         {
-            return Redirect::back()->withInput()->withErrors($validator);
+            return Redirect::back()->withErrors($validator);
         }
     }
 
@@ -111,20 +106,10 @@ class SupplierController extends BaseController {
     {
         $input = Input::all();
         $rules = array(
-            'name' => 'required',
-            'address'  => 'required',
-            'phone' => 'required|numeric',
-            'rfc' => 'required'
+            'phone' => 'numeric',
         );
-        $messages = array
-            (
-                'name.required' => 'El campo es requerido',
-                'address.required' => 'El campo es requerido',
-                'phone.required' => 'El campo es requerido',
-                'phone.numeric' => 'Inserte solo números',
-                'rfc.required' => 'El campo es requerido'
-            );
-        $validator = Validator::make($input, $rules,$messages);
+
+        $validator = Validator::make($input, $rules);
         if($validator->passes())
         {
             $supplier = Supplier::findorFail($id);
