@@ -12,7 +12,7 @@ Admon-Paq - Búsqueda
 @stop
 
 @section('tituloTabla')
-Búsqueda
+Resultados de Búsqueda
 @stop
 
 @section('botonCrear')
