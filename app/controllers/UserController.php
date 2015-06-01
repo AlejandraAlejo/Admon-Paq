@@ -88,31 +88,30 @@ class UserController extends \BaseController {
      *
      * @return Response
      */
-    public function delete($id)
+    
+    public function delete()
     {
-        $users = User::find($id);
         $currentUserId = Auth::user()->id;
+        $user = User::findorFail(Input::get('userid'));
           
         //si eliminamos el usuario con el que iniciamos sesión...
-        if($users->id == $currentUserId)
+        if($user->id == $currentUserId)
         {
+                $user->delete();
+                Session::flash('message','Usuario eliminado.');
+                Session::flash('class', 'danger');
+
+                //Volvemos al formulario de inicio
+                return Redirect::to('/');
             
-            //Cerramos sesión
-            //Auth::logout();
-            //eliminamos usuario
-            $users->delete();
-            Session::flash('message','Usuario eliminado.');
-            Session::flash('class', 'danger');
-        
-            //Volvemos al formulario de inicio
-            return Redirect::to('/');
             
         }
         else{
-            $users->delete(); 
-            Session::flash('message','Usuario eliminado.');
-            Session::flash('class', 'danger');
-            return Redirect::back();
+                $user->delete();
+                Session::flash('message','Usuario eliminado.');
+                Session::flash('class', 'danger');
+                return Redirect::back();
+           
         }
     }
 

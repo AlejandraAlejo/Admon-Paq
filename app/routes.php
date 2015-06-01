@@ -52,6 +52,8 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('/incomes/update/{id}','IncomesController@update');
 	//Ver ingreso
 	Route::get('/incomes/view/{id}','IncomesController@view');
+	//Eliminar ingreso
+	Route::post('/incomes/delete', 'IncomesController@delete');
 
 	Route::get('/incomes/destroy/{id}','IncomesController@destroy');
 	//Route::controller('incomes','IncomesController');
@@ -108,7 +110,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/user/view/{id}', array('as' => 'id', 'uses' => 'UserController@view'));
 
 	//Elimina el usuario seleccionado
-	Route::get('/user/delete/{id}', array('as' => 'id', 'uses' => 'UserController@delete'));
+	Route::post('/user/delete', 'UserController@delete');
 
 	//Muestra formulario para editar el usuario
 	Route::get('/user/update/{id}','UserController@showUpdate');

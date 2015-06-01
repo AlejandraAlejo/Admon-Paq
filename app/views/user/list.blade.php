@@ -47,12 +47,11 @@ Usuarios
             </p>
         </td>
         <td class="list-buttons">
-            <p data-placement="top" data-toggle="tooltip" title="Delete">
-                <a href = "/user/delete/{{$user->id}}">
-                    <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </a>    
+            <p data-placement="top" data-toggle="tooltip" title="Delete">               
+                <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-userid="{{$user->id}}" data-target='#delete_user'>
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                
             </p>
         </td>
     </tr>
@@ -64,4 +63,42 @@ No hay Usuarios registrados.
 
 @section('paginacion')
 {{$users->links()}}
+@stop
+
+@section('modal')
+<div class="modal fade" id="delete_user" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title" id="Heading">Eliminar usuario</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-warning-sign"></span> ¿Está seguro que desea eliminar este usuario?
+                </div>
+            </div>
+            <div class="modal-footer ">
+                {{Form::open(array('url'=>'user/delete'))}}
+                    {{ Form::hidden('userid', '', array('id' => 'userid')) }}
+                    <button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                {{Form::close()}}
+            </div>
+        </div>
+    </div>
+</div>
+@stop
+
+@section('scripts')
+<script type="text/javascript">
+    $('#delete_user').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('userid')
+        var modal = $(this)
+        modal.find('.modal-footer input').val(recipient)
+    })
+</script>
 @stop
