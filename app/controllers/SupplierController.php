@@ -107,9 +107,14 @@ class SupplierController extends BaseController {
         $input = Input::all();
         $rules = array(
             'phone' => 'numeric',
+            'rfc' => 'alpha_num'
+        );
+        $messages = array(
+            'phone.numeric' => 'El campo Telefono debe ser un número.',
+            'rfc.alpha_num' => 'El campo RFC sólo puede contener letras y números.'
         );
 
-        $validator = Validator::make($input, $rules);
+        $validator = Validator::make($input, $rules, $messages);
         if($validator->passes())
         {
             $supplier = Supplier::findorFail($id);
@@ -131,7 +136,7 @@ class SupplierController extends BaseController {
         }
         else
         {
-            return Redirect::back()->withInput()->withErrors($validator);
+            return Redirect::back()->withErrors($validator);
         }
     }
 }
