@@ -45,12 +45,6 @@
                     @yield('navegacion')
                 </ul>
 
-                <!--<form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar">
-                    </div>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </form>-->
                 {{ Form::open(array('action' => 'UserController@search', 'role' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET')) }}
                     <div class="form-group">
                         {{ Form::text('searchbox', '', array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
@@ -59,12 +53,10 @@
                 {{ Form::close() }}
                 
  
-                <ul class="nav navbar-nav navbar-right form-group">
-                   <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
-                    <li>&nbsp;</li>
-                    <li class = "logout"><a href="/../../logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
-                    <li>&nbsp;</li>
-                </ul>
+                <div class='navbar-form navbar-right'>
+                    <a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a>&nbsp;&nbsp;
+                    <a href="/../../logout" class="btn btn-danger">Cerrar sesión</a>
+                </div>
             </div>
         </nav>
     </header>

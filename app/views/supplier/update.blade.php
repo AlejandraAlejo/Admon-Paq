@@ -12,11 +12,6 @@ Admon-Paq - Crear Proveedor
         <li><a href="/user/list">Usuarios</a></li>
 @stop
 
-@section('perfil')
-    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
-    <li><a href="/../../logout" class="btn btn-danger font-white">Cerrar sesión</a></li>
-@stop
-
 @section('tituloTabla')
 Registrar Proveedor
 @stop

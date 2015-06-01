@@ -12,11 +12,6 @@ Admon-Paq - Editar Usuario
         <li class="active"><a href="/user/list">Usuarios</a></li>
 @stop
 
-@section('perfil')
-    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
-    <li class="logout"><a href="/../../logout" class="btn btn-danger font-white">Cerrar sesión</a></li>
-@stop
-
 @section('tituloTabla')
 Editar Usuario
 @stop

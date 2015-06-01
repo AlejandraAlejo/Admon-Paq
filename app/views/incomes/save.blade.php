@@ -12,11 +12,6 @@ Admon-Paq - Crear ingreso
         <li><a href="/user/list">Usuarios</a></li>
 @stop
 
-@section('perfil')
-    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
-    <li class = "logout"><a href="logout" class="btn btn-danger"><span>Cerrar sesión</span></a></li>
-@stop
-
 @section('tituloTabla')
 Registrar Ingreso
 @stop

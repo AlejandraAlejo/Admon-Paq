@@ -57,9 +57,10 @@
                     <button type="submit" class="btn btn-default" onClick="alerta()"><span class="glyphicon glyphicon-search"></span></button>
                 {{ Form::close() }}
  
-                <ul class="nav navbar-nav navbar-right">
-                    @yield('perfil')
-                </ul>
+                <div class='navbar-form navbar-right'>
+                    <a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a>&nbsp;&nbsp;
+                    <a href="/../../logout" class="btn btn-danger">Cerrar sesión</a>
+                </div>
             </div>
         </nav>
     </header>

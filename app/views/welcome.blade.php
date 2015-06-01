@@ -22,11 +22,6 @@ Admon-Paq: Bienvenido
     <li><a href="/user/list">Usuarios</a></li>
 @stop
 
-@section('perfil')
-    <li><a href="/user/profile">Perfil: {{ App::make("UserController")->viewUserName() }}</a></li>
-    <li><a href="logout" class="btn btn-danger">Cerrar sesión</a></li>
-@stop
-
 @section('contenido')
     @if(Session::has('message'))
         <div class="alert alert-{{Session::get('class')}} alert dismissible" role="alert">
