@@ -8,22 +8,44 @@ class SupplierController extends BaseController {
     public function create()
     {
         $input = Input::all();
-        $supplier = new Supplier;
-        $supplier -> name = $input['name'];
-        $supplier -> address = $input['address'];
-        $supplier -> phone = $input['phone'];
-        $supplier -> rfc = $input['rfc'];
-        if($supplier->save())
+        $rules = array(
+            'name' => 'required',
+            'address'  => 'required',
+            'phone' => 'required|numeric',
+            'rfc' => 'required'
+        );
+        $messages = array
+            (
+                'name.required' => 'El campo es requerido',
+                'address.required' => 'El campo es requerido',
+                'phone.required' => 'El campo es requerido',
+                'phone.numeric' => 'Inserte solo números',
+                'rfc.required' => 'El campo es requerido'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
         {
-        	Session::flash('message','Proveedor registrado.');
-			Session::flash('class', 'success');
+            $supplier = new Supplier;
+            $supplier -> name = $input['name'];
+            $supplier -> address = $input['address'];
+            $supplier -> phone = $input['phone'];
+            $supplier -> rfc = $input['rfc'];
+            if($supplier->save())
+            {
+                Session::flash('message','Proveedor registrado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo guardar el proveedor.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::back();
         }
         else
         {
-        	Session::flash('message', 'No se pudo guardar el proveedor.');
-			Session::flash('class', 'danger');
+            return Redirect::back()->withInput()->withErrors($validator);
         }
-        return Redirect::back();
     }
 
     /**
@@ -84,25 +106,48 @@ class SupplierController extends BaseController {
         }
         return View::make('/supplier/update')->withSupplier($supplier);
     }
-
+    
     public function update($id)
     {
-        $supplier = Supplier::findorFail($id);
-        $supplier -> name = Input::get('name');
-        $supplier -> address = Input::get('address');
-        $supplier -> phone = Input::get('phone');
-        $supplier -> rfc = Input::get('rfc');
-        if($supplier->save())
+        $input = Input::all();
+        $rules = array(
+            'name' => 'required',
+            'address'  => 'required',
+            'phone' => 'required|numeric',
+            'rfc' => 'required'
+        );
+        $messages = array
+            (
+                'name.required' => 'El campo es requerido',
+                'address.required' => 'El campo es requerido',
+                'phone.required' => 'El campo es requerido',
+                'phone.numeric' => 'Inserte solo números',
+                'rfc.required' => 'El campo es requerido'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
         {
-            Session::flash('message','Proveedor actualizado.');
-            Session::flash('class', 'success');
+            $supplier = Supplier::findorFail($id);
+            $supplier -> name = Input::get('name');
+            $supplier -> address = Input::get('address');
+            $supplier -> phone = Input::get('phone');
+            $supplier -> rfc = Input::get('rfc');
+            if($supplier->save())
+            {
+                Session::flash('message','Proveedor actualizado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo actualizar el proveedor.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::to('/supplier/list');
         }
         else
         {
-            Session::flash('message', 'No se pudo actualizar el proveedor.');
-            Session::flash('class', 'danger');
+            return Redirect::back()->withInput()->withErrors($validator);
         }
-        return Redirect::to('/supplier/list');
     }
 }
 ?>

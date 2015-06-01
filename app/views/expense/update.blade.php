@@ -25,22 +25,26 @@ Editar Egreso
 {{Form::model($expense, array('files'=>true))}}
     <div class = "form-group">
         {{ Form::label('description', 'Concepto') }}
-        {{ Form::text('description', $expense->description, array('class' => 'form-control', 'placeholder' => 'Concepto', 'required' => 'required')) }}
+        {{ Form::text('description', Input::old('description'), array('class' => 'form-control', 'placeholder' => 'Concepto')) }}
+        <div class="bg-danger">{{$errors->first('description')}}</div>
     </div>
                 
     <div class = "form-group">
         {{ Form::label('date', 'Fecha del Egreso (Año-Mes-Día)') }}
-        {{ Form::text('date', $date, array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha', 'required' => 'required')) }}        
+        {{ Form::text('date', Input::old('date'), array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha')) }}        
+        <div class="bg-danger">{{$errors->first('date')}}</div>
     </div>
 
     <div class = "form-group">
-            {{ Form::label('amount', 'Cantidad') }}
-            {{ Form::text('amount', $amount, array('class' => 'form-control', 'placeholder' => 'Cantidad', 'required' => 'required')) }}
-        </div>
+        {{ Form::label('amount', 'Cantidad') }}
+        {{ Form::text('amount', Input::old('amount'), array('class' => 'form-control', 'placeholder' => 'Cantidad')) }}
+        <div class="bg-danger">{{$errors->first('amount')}}</div>
+    </div>
 
     <div class = "form-group">
         {{ Form::label('supplier_name', 'Proveedor') }}
         {{ Form::select('supplier_name', $supplier_name, [$supplier_selected_name => $supplier_selected_id], array('class' => 'form-control')) }}
+        <div class="bg-danger">{{$errors->first('supplier_name')}}</div>
     </div>
 
     
