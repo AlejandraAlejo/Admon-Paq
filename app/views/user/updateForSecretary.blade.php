@@ -26,11 +26,13 @@ Editar Usuario
     <div class = "form-group">
         {{ Form::label('user', 'Nombre de usuario') }}
         {{ Form::text('user', $user->name, array('class' => 'form-control', 'required' => 'required', 'readonly' => 'readonly')) }}
+        {{ $errors->first('user', '<span class="label label-danger">:message</span>') }}
     </div>
                 
     <div class = "form-group">
         {{ Form::label('password', 'Contraseña') }}
         {{ Form::text('password', $pass_decrypt, array('class' => 'form-control', 'placeholder' => 'Contraseña', 'required' => 'required')) }}
+        {{ $errors->first('password', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
