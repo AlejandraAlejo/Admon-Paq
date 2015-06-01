@@ -90,14 +90,3 @@ No hay Proveedores registrados.
     </div>
 </div>
 @stop
-
-@section('scripts')
-<script type="text/javascript">
-    $('#delete_supplier').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var recipient = button.data('supplierid')
-        var modal = $(this)
-        modal.find('.modal-footer input').val(recipient)
-    })
-</script>
-@stop
