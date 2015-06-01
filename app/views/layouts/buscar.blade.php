@@ -47,7 +47,7 @@
 
                 {{ Form::open(array('action' => 'UserController@search', 'role' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET')) }}
                     <div class="form-group">
-                        {{ Form::text('searchbox', '', array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
+                        {{ Form::text('searchbox', Input::get('searchbox'), array('class' => 'form-control', 'placeholder' => 'Buscar')) }}    
                     </div>
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                 {{ Form::close() }}
