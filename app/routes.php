@@ -110,7 +110,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/user/view/{id}', array('as' => 'id', 'uses' => 'UserController@view'));
 
 	//Elimina el usuario seleccionado
-	Route::get('/user/delete/{id}', array('as' => 'id', 'uses' => 'UserController@delete'));
+	Route::post('/user/delete', 'UserController@delete');
 
 	//Muestra formulario para editar el usuario
 	Route::get('/user/update/{id}','UserController@showUpdate');

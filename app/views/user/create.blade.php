@@ -31,7 +31,7 @@ Registrar Usuario
                 
     <div class = "form-group">
         {{ Form::label('password', 'Contraseña') }}
-        {{ Form::password('password', '', array('class' => 'form-control')) }}
+        {{ Form::password('password', array('class' => 'form-control')) }}
         <div class="bg-danger">{{$errors->first('password')}}</div>
     </div>
 
