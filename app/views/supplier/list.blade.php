@@ -1,7 +1,7 @@
 @extends('layouts.listar')
 
 @section('titulo')
-Admon-Paq - Crear Proveedor
+Admon-Paq - Proveedores
 @stop
 
 @section('navegacion')
