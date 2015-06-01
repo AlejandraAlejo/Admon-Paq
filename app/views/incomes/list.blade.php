@@ -74,11 +74,11 @@ No hay ingresos registrados.
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
-                <h4 class="modal-title" id="Heading">Eliminar proveedor</h4>
+                <h4 class="modal-title" id="Heading">Eliminar ingreso</h4>
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-warning-sign"></span> ¿Está seguro que desea eliminar este proveedor?
+                    <span class="glyphicon glyphicon-warning-sign"></span> ¿Está seguro que desea eliminar este ingreso?
                 </div>
             </div>
             <div class="modal-footer ">

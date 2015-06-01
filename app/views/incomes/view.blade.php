@@ -16,13 +16,13 @@ Ingreso: {{$income->description}}
 @stop
 
 @section('info')
-<strong>{{$income->description}}</strong><br>
-{{$income->date}}<br>
-{{$income->amount}}<br>
+<strong>Dirección: {{$income->description}}</strong><br>
+Fecha: {{$income->date}}<br>
+Cantidad: {{$income->amount}}<br>
 @stop
 
 @section('botonVolver')
-<a href="/incomes/list" class="btn btn-default">Volver</a>
+<a href="/incomes/list" class="btn btn-success">Volver a lista de Ingresos</a>
 @stop
 
 @section('botonEditar')

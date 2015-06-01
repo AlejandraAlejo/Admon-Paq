@@ -61,7 +61,7 @@ class IncomesController extends \BaseController {
 
             if($income->save())
             {
-                Session::flash('message','Ingreso registradoooo.');
+                Session::flash('message','Ingreso registrado.');
                 Session::flash('class', 'success');
             }
             else
@@ -165,7 +165,7 @@ class IncomesController extends \BaseController {
             $income = Income::findorFail($id);
             $income -> description = Input::get('description');
             $income -> date = Input::get('date');
-            $income -> amount = Input::get(Input::get('amount'));
+            $income -> amount = Input::get('amount');
             if($income->save())
             {
                 Session::flash('message','Ingreso actualizado.');
