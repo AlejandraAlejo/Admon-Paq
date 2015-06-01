@@ -10,14 +10,9 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-//Mostrar formulario de inicio de sesión
-Route::get('/', 'SessionsController@showLogin');
 
 Route::group(array('before' => 'auth'), function()
 {
-	//Verificar los datos ingresados en el formulario y enviar al menu principal
-	Route::post('welcome', 'SessionsController@welcome');
-
 	//Cerrar sesión
 	Route::get('logout', 'SessionsController@logOut');
 	Route::get('/supplier/logout', 'SessionsController@logOut');
@@ -128,3 +123,9 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/user/profile', 'UserController@viewProfile');
 
 });
+
+//Mostrar formulario de inicio de sesión
+Route::get('/', 'SessionsController@showLogin');
+
+//Verificar los datos ingresados en el formulario y enviar al menu principal
+Route::post('welcome', 'SessionsController@welcome');
