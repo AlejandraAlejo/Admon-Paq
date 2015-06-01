@@ -9,24 +9,42 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//Registra nuevo usuario
 		$input = Input::all();
-        $user = new User;
-        $user -> user = $input['user'];
-        $user -> password = Hash::make($input['password']);
-        $user -> pass_encrypt = Crypt::encrypt($input['password']);
-        $user -> user_type_id = $input['type'];
-        if($user->save())
+        $rules = array(
+            'user' => 'required',
+            'password'  => 'required',
+            'type' => 'required'
+        );
+        $messages = array
+            (
+                'user.required' => 'El campo es requerido',
+                'password.required' => 'El campo es requerido',
+                'type.required' => 'El campo es requerido'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
         {
-        	Session::flash('message','Usuario registrado.');
-			Session::flash('class', 'success');
+            $user = new User;
+            $user -> user = $input['user'];
+            $user -> password = Hash::make($input['password']);
+            $user -> pass_encrypt = Crypt::encrypt($input['password']);
+            $user -> user_type_id = $input['type'];
+            if($user->save())
+            {
+                Session::flash('message','Usuario registrado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo guardar el usuario.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::back();
         }
         else
         {
-        	Session::flash('message', 'No se pudo guardar el usuario.');
-			Session::flash('class', 'danger');
+            return Redirect::back()->withInput()->withErrors($validator);
         }
-        return Redirect::back();
 	}
 
 
@@ -167,22 +185,42 @@ class UserController extends \BaseController {
 
     public function update($id)
     {
-        $user = User::find($id);
-        $user -> user = Input::get('user');
-        $user -> password = Hash::make(Input::get('password'));
-        $user -> pass_encrypt = Crypt::encrypt(Input::get('password'));
-        $user -> user_type_id = Input::get('type');
-        if($user->save())
+        $input = Input::all();
+        $rules = array(
+            'user' => 'required',
+            'password'  => 'required',
+            'type' => 'required'
+        );
+        $messages = array
+            (
+                'user.required' => 'El campo es requerido',
+                'password.required' => 'El campo es requerido',
+                'type.required' => 'El campo es requerido'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
         {
-            Session::flash('message','Usuario actualizado.');
-            Session::flash('class', 'success');
+            $user = User::find($id);
+            $user -> user = Input::get('user');
+            $user -> password = Hash::make(Input::get('password'));
+            $user -> pass_encrypt = Crypt::encrypt(Input::get('password'));
+            $user -> user_type_id = Input::get('type');
+            if($user->save())
+            {
+                Session::flash('message','Usuario actualizado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo actualizar el usuario.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::to('/user/list');
         }
         else
         {
-            Session::flash('message', 'No se pudo actualizar el usuario.');
-            Session::flash('class', 'danger');
+            return Redirect::back()->withInput()->withErrors($validator);
         }
-        return Redirect::to('/user/list');
     }
     
     /*

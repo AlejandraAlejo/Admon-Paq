@@ -31,7 +31,7 @@ Registrar Ingreso
     </div>
                 
     <div class = "form-group">
-        {{ Form::label('date', 'Fecha del ingreso') }}
+        {{ Form::label('date', 'Fecha del Ingreso (Año-Mes-Día)') }}
         {{ Form::text('date', Input::old('date'), array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha')) }}
         <div class="bg-danger">{{$errors->first('date')}}</div>
     </div>

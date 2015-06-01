@@ -8,22 +8,46 @@ class ExpenseController extends BaseController {
     public function create()
     {
         $input = Input::all();
-        $expense = new Expense;
-        $expense -> description = $input['description'];
-        $expense -> date = $input['date'];
-        $expense -> amount = $input['amount'];
-        $expense -> supplier_id = $input['supplier_id'];
-        if($expense->save())
+        $rules = array(
+            'description' => 'required|min:4|max:40',
+            'date'  => 'required',
+            'amount' => 'required|numeric',
+            'supplier_id' => 'required'
+        );
+        $messages = array
+            (
+                'description.required' => 'El campo es requerido',
+                'date.required' => 'El campo es requerido',
+                'amount.required' => 'El campo es requerido',
+                'supplier_id.required' => 'El campo es requerido',
+                'description.min' => 'Mínimo 4 caracteres',
+                'description.max' => 'Maximo 40 caracteres',
+                'amount.numeric' => 'Inserte solo números'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
         {
-        	Session::flash('message','Egreso registrado.');
-			Session::flash('class', 'success');
+            $expense = new Expense;
+            $expense -> description = $input['description'];
+            $expense -> date = $input['date'];
+            $expense -> amount = $input['amount'];
+            $expense -> supplier_id = $input['supplier_id'];
+            if($expense->save())
+            {
+                Session::flash('message','Egreso registrado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo guardar el Egreso.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::back();
         }
         else
         {
-        	Session::flash('message', 'No se pudo guardar el Egreso.');
-			Session::flash('class', 'danger');
+            return Redirect::back()->withInput()->withErrors($validator);
         }
-        return Redirect::back();
     }
 
     /**
@@ -94,22 +118,47 @@ class ExpenseController extends BaseController {
     
      public function update($id)
     {
-        $expense = Expense::find($id);
-        $expense -> description = Input::get('description');
-        $expense -> date = Input::get('date');
-        $expense -> amount = Input::get('amount');
-        $expense -> supplier_id = Input::get('supplier_name');
-        if($expense->save())
+        $input = Input::all();
+        $rules = array(
+            'description' => 'required|min:4|max:40',
+            'date'  => 'required',
+            'amount' => 'required|numeric',
+            'supplier_id' => 'required'
+        );
+        $messages = array
+            (
+                'description.required' => 'El campo es requerido',
+                'date.required' => 'El campo es requerido',
+                'amount.required' => 'El campo es requerido',
+                'supplier_id.required' => 'El campo es requerido',
+                'description.min' => 'Mínimo 4 caracteres',
+                'description.max' => 'Maximo 40 caracteres',
+                'amount.numeric' => 'Inserte solo números'
+            );
+        $validator = Validator::make($input, $rules,$messages);
+        if($validator->passes())
         {
-            Session::flash('message','Egreso actualizado.');
-            Session::flash('class', 'success');
+            $expense = Expense::find($id);
+            $expense -> description = Input::get('description');
+            $expense -> date = Input::get('date');
+            $expense -> amount = Input::get('amount');
+            $expense -> supplier_id = Input::get('supplier_name');
+            if($expense->save())
+            {
+                Session::flash('message','Egreso actualizado.');
+                Session::flash('class', 'success');
+            }
+            else
+            {
+                Session::flash('message', 'No se pudo actualizar el egreso.');
+                Session::flash('class', 'danger');
+            }
+            return Redirect::to('/expense/list');
         }
         else
         {
-            Session::flash('message', 'No se pudo actualizar el egreso.');
-            Session::flash('class', 'danger');
+            return Redirect::back()->withInput()->withErrors($validator);
         }
-        return Redirect::to('/expense/list');
     }
     
     /*

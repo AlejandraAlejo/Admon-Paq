@@ -25,27 +25,32 @@ Registrar Proveedor
 {{Form::model($supplier, array('files'=>true))}}
     <div class = "form-group">
         {{ Form::label('name', 'Nombre') }}
-        {{ Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Nombre', 'required' => 'required')) }}
+        {{ Form::text('name', Input::old('name'), array('class' => 'form-control', 'placeholder' => 'Nombre')) }}
+        <div class="bg-danger">{{$errors->first('name')}}</div>
     </div>
                 
     <div class = "form-group">
         {{ Form::label('address', 'Dirección') }}
-        {{ Form::text('address', '', array('class' => 'form-control', 'placeholder' => 'Dirección', 'required' => 'required')) }}
+        {{ Form::text('address', Input::old('address'), array('class' => 'form-control', 'placeholder' => 'Dirección')) }}
+        <div class="bg-danger">{{$errors->first('address')}}</div>
     </div>
 
     <div class = "form-group">
         {{ Form::label('phone', 'Teléfono') }}
-        {{ Form::text('phone', '', array('class' => 'form-control', 'placeholder' => 'Teléfono')) }}
+        {{ Form::text('phone', Input::old('phone'), array('class' => 'form-control', 'placeholder' => 'Teléfono')) }}
+        <div class="bg-danger">{{$errors->first('phone')}}</div>
     </div>
 
     <div class = "form-group">
         {{ Form::label('rfc', 'RFC') }}
-        {{ Form::text('rfc', '', array('class' => 'form-control', 'placeholder' => 'RFC', 'required' => 'required')) }}
+        {{ Form::text('rfc', Input::old('rfc'), array('class' => 'form-control', 'placeholder' => 'RFC')) }}
+        <div class="bg-danger">{{$errors->first('rfc')}}</div>
     </div>
     
     <div class = "submit-button">
         {{ Form::submit('Guardar', array('class' => 'btn btn-success')) }}
         <a href="/supplier/list" class="btn btn-danger">Cancelar</a>
+        <div class="bg-danger">{{$errors->first('description')}}</div>
     </div>
 {{ Form::close() }}
 @stop

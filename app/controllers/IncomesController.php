@@ -30,33 +30,10 @@ class IncomesController extends \BaseController {
    		return View::make('incomes.save')->with('income', $income);
 	}
 	/**
-     * Crea un nuevo egreso
+     * Crea un nuevo ingreso
      *
      * @return Redirect::back()
      */
-    /*public function create()
-    {
-        $input = Input::all();
-        $income = new Income;
-        $income  -> description = $input['description'];
-        $income  -> date = $input['date'];
-        $income  -> amount = $input['amount'];
-
-        if($income->save())
-        {
-        	Session::flash('message','Ingreso registradoooo.');
-			Session::flash('class', 'success');
-        }
-        else
-        {
-        	Session::flash('message', 'No se pudo guardar el Ingreso.');
-			Session::flash('class', 'danger');
-        }
-        return Redirect::back();
-    }*/
-    /**
-    *NEWWWWWWWWWWWWWW
-    */
     public function create()
     {
         $input = Input::all();
