@@ -23,12 +23,6 @@ Admon-Paq: Bienvenido
 @stop
 
 @section('contenido')
-    @if(Session::has('message'))
-        <div class="alert alert-{{Session::get('class')}} alert dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{Session::get('message')}}
-        </div>
-    @endif
     <div class = "logo">
         {{ HTML::image('img/LogoAdmonPaq.png') }}
     </div>
