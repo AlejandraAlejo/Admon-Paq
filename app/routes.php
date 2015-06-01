@@ -52,6 +52,8 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('/incomes/update/{id}','IncomesController@update');
 	//Ver ingreso
 	Route::get('/incomes/view/{id}','IncomesController@view');
+	//Eliminar ingreso
+	Route::post('/incomes/delete', 'IncomesController@delete');
 
 	Route::get('/incomes/destroy/{id}','IncomesController@destroy');
 	//Route::controller('incomes','IncomesController');

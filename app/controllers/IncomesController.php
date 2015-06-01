@@ -232,4 +232,25 @@ class IncomesController extends \BaseController {
         $income = Income::findOrFail($id);
         return View::make('incomes/view')->with('income', $income);
     }
+
+    /**
+     * Elimina un ingreso registrado
+     *
+     * @return View
+     */
+    public function delete()
+    {
+        $income=Income::findorFail(Input::get('incomeid'));
+        if($income->delete())
+        {
+            Session::flash('message','Ingreso eliminado.');
+            Session::flash('class', 'success');
+        }
+        else
+        {
+            Session::flash('message', 'No se pudo eliminar el ingreso.');
+            Session::flash('class', 'danger');
+        }
+        return Redirect::back();
+    }
 }

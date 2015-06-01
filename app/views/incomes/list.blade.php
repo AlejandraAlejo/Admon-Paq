@@ -50,11 +50,9 @@ Ingresos
         </td>
         <td class="list-buttons">
             <p data-placement="top" data-toggle="tooltip" title="Delete">
-                <a href="{{url('/incomes/delete/'.$income->id)}}">
-                    <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal'>
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </a>
+                <button type='button' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-incomeid="{{$income->id}}" data-target='#delete_income' >
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
             </p>
         </td>
     </tr>
@@ -67,3 +65,41 @@ No hay ingresos registrados.
 @section('paginacion')
 {{$incomes->links()}}
 @stop
+
+@section('modal')
+<div class="modal fade" id="delete_income" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title" id="Heading">Eliminar proveedor</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-warning-sign"></span> ¿Está seguro que desea eliminar este proveedor?
+                </div>
+            </div>
+            <div class="modal-footer ">
+                {{Form::open(array('url'=>'incomes/delete'))}}
+                    {{ Form::hidden('incomeid', '', array('id' => 'incomeid')) }}
+                    <button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                {{Form::close()}}
+            </div>
+        </div>
+    </div>
+</div>
+@stop
+
+@section('scripts')
++<script type="text/javascript">
+    $('#delete_income').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('incomeid')
+        var modal = $(this)
+        modal.find('.modal-footer input').val(recipient)
+    })
+</script>
+ @stop 
