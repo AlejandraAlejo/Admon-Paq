@@ -54,10 +54,19 @@ class SupplierController extends BaseController {
      *
      * @return View
      */
-    public function delete($id)
+    public function delete()
     {
-        $supplier=Supplier::findorFail($id);
-        $supplier->delete();
+        $supplier=Supplier::findorFail(Input::get('supplierid'));
+        if($supplier->delete())
+        {
+            Session::flash('message','Proveedor eliminado.');
+            Session::flash('class', 'success');
+        }
+        else
+        {
+            Session::flash('message', 'No se pudo eliminar el proveedor.');
+            Session::flash('class', 'danger');
+        }
         return Redirect::back();
     }
 

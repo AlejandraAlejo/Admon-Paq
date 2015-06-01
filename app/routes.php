@@ -33,7 +33,7 @@ Route::get('/supplier/create', function()
 Route::post('/supplier/create', 'SupplierController@create');
 
 //Eliminar proveedor
-Route::get('/supplier/delete/{id}', 'SupplierController@delete');
+Route::post('/supplier/delete', 'SupplierController@delete');
 
 //Listar todos los proveedores
 Route::get('/supplier/list', 'SupplierController@showAll'); 
