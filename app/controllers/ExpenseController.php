@@ -82,9 +82,9 @@ class ExpenseController extends BaseController {
      *
      * @return Response
      */
-    public function delete($id)
+    public function delete()
     {
-        $expenses = Expense::find($id);
+        $expenses = Expense::findorFail(Input::get('expenseid'));
         $expenses->delete();
         Session::flash('message','Egreso eliminado.');
         Session::flash('class', 'danger');
@@ -123,14 +123,13 @@ class ExpenseController extends BaseController {
             'description' => 'required|min:4|max:40',
             'date'  => 'required',
             'amount' => 'required|numeric',
-            'supplier_id' => 'required'
+            
         );
         $messages = array
             (
                 'description.required' => 'El campo es requerido',
                 'date.required' => 'El campo es requerido',
                 'amount.required' => 'El campo es requerido',
-                'supplier_id.required' => 'El campo es requerido',
                 'description.min' => 'Mínimo 4 caracteres',
                 'description.max' => 'Maximo 40 caracteres',
                 'amount.numeric' => 'Inserte solo números'

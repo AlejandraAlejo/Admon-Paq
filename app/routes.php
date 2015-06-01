@@ -93,7 +93,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('/expense/update/{id}','ExpenseController@update');
 
 	//Elimina el egreso seleccionado
-	Route::get('/expense/delete/{id}', array('as' => 'id', 'uses' => 'ExpenseController@delete'));
+	Route::post('/expense/delete', 'ExpenseController@delete');
 
 
 
