@@ -80,11 +80,14 @@ class ExpenseController extends BaseController {
         $description = $expense->description;
         $date = $expense->date;
         $amount = $expense->amount;
+        $supplier_selected = Supplier::find($expense->supplier_id);
+        $supplier_selected_id = $supplier_selected->id;
+        $supplier_selected_name = $supplier_selected->name;
         $supplier_name = Supplier::lists('name', 'id');
         if(!$expense){
             App::abort(404);
         }
-        return View::make('/expense/update')->withExpense($expense)->withDescription($description)->withDate($date)->withAmount($amount)->withSupplierName($supplier_name);
+        return View::make('/expense/update')->withExpense($expense)->withDescription($description)->withDate($date)->withAmount($amount)->withSupplierName($supplier_name)->withSupplierSelectedName($supplier_selected_name)->withSupplierSelectedId($supplier_selected_id);
         
         
     }
