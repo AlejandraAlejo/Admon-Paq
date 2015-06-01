@@ -17,13 +17,13 @@ Proveedor: {{$supplier->name}}
 
 @section('info')
 <strong>{{$supplier->name}}</strong><br>
-{{$supplier->address}}<br>
-{{$supplier->rfc}}<br>
- <abbr title="Phone">Tel:</abbr> {{$supplier->phone}}
+<abbr title="Dirección">{{$supplier->address}}</abbr><br>
+RFC: {{$supplier->rfc}}<br>
+Tel: {{$supplier->phone}}
 @stop
 
 @section('botonVolver')
-<a href="/supplier/list" class="btn btn-default">Volver</a>
+<a href="/supplier/list" class="btn btn-success">Volver a lista de Proveedores</a>
 @stop
 
 @section('botonEditar')
