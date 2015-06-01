@@ -33,7 +33,7 @@
                         {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Ingresa tu contraseña')) }}
                     </div>
                         <div class = "submit-button">
-                            {{ Form::submit('Ingresar', array('class' => 'btn btn-primary btn-lg')) }}
+                            {{ Form::submit('Ingresar', array('class' => 'btn btn-warning btn-lg')) }}
                         </div>
                 {{ Form::close() }}
             </div>  
