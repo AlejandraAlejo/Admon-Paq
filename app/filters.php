@@ -43,7 +43,9 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			Session::flash('message', 'Debe iniciar sesión.');
+            Session::flash('class', 'danger');
+			return Redirect::guest('/');
 		}
 	}
 });
