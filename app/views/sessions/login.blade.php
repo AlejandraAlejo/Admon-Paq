@@ -26,11 +26,11 @@
                 {{ Form::open(['url' => 'welcome']) }}
                     <div class = "form-group">
                         {{ Form::label('user', 'Usuario') }}
-                        {{ Form::text('user', '', array('class' => 'form-control', 'placeholder' => 'Ingresa tu usuario')) }}
+                        {{ Form::text('user', '', array('class' => 'form-control', 'placeholder' => 'Ingresa tu usuario', 'required' => 'required')) }}
                     </div>
                     <div class = "form-group">
                         {{ Form::label('password', 'Contraseña') }}
-                        {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Ingresa tu contraseña')) }}
+                        {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Ingresa tu contraseña', 'required' => 'required')) }}
                     </div>
                         <div class = "submit-button">
                             {{ Form::submit('Ingresar', array('class' => 'btn btn-success btn-lg')) }}
