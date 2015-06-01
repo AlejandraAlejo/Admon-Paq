@@ -26,25 +26,24 @@ Editar Egreso
     <div class = "form-group">
         {{ Form::label('description', 'Concepto') }}
         {{ Form::text('description', Input::old('description'), array('class' => 'form-control', 'placeholder' => 'Concepto')) }}
-        <div class="bg-danger">{{$errors->first('description')}}</div>
+        {{ $errors->first('description', '<span class="label label-danger">:message</span>') }}
     </div>
                 
     <div class = "form-group">
         {{ Form::label('date', 'Fecha del Egreso (Año-Mes-Día)') }}
         {{ Form::text('date', Input::old('date'), array('id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'Fecha')) }}        
-        <div class="bg-danger">{{$errors->first('date')}}</div>
+       {{ $errors->first('date', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('amount', 'Cantidad') }}
         {{ Form::text('amount', Input::old('amount'), array('class' => 'form-control', 'placeholder' => 'Cantidad')) }}
-        <div class="bg-danger">{{$errors->first('amount')}}</div>
+        {{ $errors->first('amount', '<span class="label label-danger">:message</span>') }}
     </div>
 
     <div class = "form-group">
         {{ Form::label('supplier_name', 'Proveedor') }}
         {{ Form::select('supplier_name', $supplier_name, [$supplier_selected_name => $supplier_selected_id], array('class' => 'form-control')) }}
-        <div class="bg-danger">{{$errors->first('supplier_name')}}</div>
     </div>
 
     
