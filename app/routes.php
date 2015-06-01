@@ -13,6 +13,13 @@
 
 Route::group(array('before' => 'auth'), function()
 {
+	//Cerrar sesión
+	Route::get('logout', 'SessionsController@logOut');
+	Route::get('/supplier/logout', 'SessionsController@logOut');
+	Route::get('/income/logout', 'SessionsController@logOut');
+
+
+
 	//Crear vista alta proveedores
 	Route::get('/supplier/create', function()
 	{
@@ -122,8 +129,3 @@ Route::get('/', 'SessionsController@showLogin');
 
 //Verificar los datos ingresados en el formulario y enviar al menu principal
 Route::post('welcome', 'SessionsController@welcome');
-
-//Cerrar sesión
-Route::get('logout', 'SessionsController@logOut');
-Route::get('/supplier/logout', 'SessionsController@logOut');
-Route::get('/income/logout', 'SessionsController@logOut');
